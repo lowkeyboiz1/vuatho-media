@@ -35,6 +35,4 @@ const ItemReview = memo(({ item }: ItemReviewProps) => {
   )
 })
 
-ItemReview.displayName = 'ItemReview'
-
 export default ItemReview

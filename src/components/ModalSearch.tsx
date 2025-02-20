@@ -1,46 +1,54 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useAtom } from 'jotai'
 import { isOpenModalSearchAtom } from '@/atoms/modal'
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { useDebounce } from '@/hooks/useDebounce'
+import { useGetListPostBySearch } from '@/query/useGetListPost'
+import { DialogTitle } from '@radix-ui/react-dialog'
+import { useAtom } from 'jotai'
+import { Loader2 } from 'lucide-react'
+import React, { memo, useCallback, useState } from 'react'
+import SearchInput from '@/components/SearchInput'
+
+const SearchResults = memo(({ search, isLoading, debouncedSearch, data }: { search: string; isLoading: boolean; debouncedSearch: string; data?: { data: any[] } }) => {
+  if (!search) return null
+
+  return (
+    <div className='mt-4 max-h-[60vh] overflow-y-auto rounded-lg border bg-white p-2 shadow-sm'>
+      <div className='flex items-center gap-2 p-2 text-sm text-muted-foreground'>
+        {isLoading ? (
+          <div className='flex items-center gap-2'>
+            <Loader2 className='h-4 w-4 animate-spin' />
+            <span>Đang tìm kiếm...</span>
+          </div>
+        ) : (
+          <span>{debouncedSearch ? `Kết quả tìm kiếm (${data?.data.length || 0})` : 'Nhập để tìm kiếm'}</span>
+        )}
+      </div>
+    </div>
+  )
+})
 
 const ModalSearch = () => {
   const [isOpen, setIsOpen] = useAtom(isOpenModalSearchAtom)
   const [search, setSearch] = useState('')
-  const searchParams = useSearchParams()
-  const pathname = usePathname()
-  const { replace } = useRouter()
+
   const debouncedSearch = useDebounce(search, 300)
+  const { data, isLoading } = useGetListPostBySearch(debouncedSearch)
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams)
-    if (debouncedSearch) {
-      params.set('search', debouncedSearch)
-    } else {
-      params.delete('search')
-    }
-    replace(`${pathname}?${params.toString()}`)
-  }, [debouncedSearch, searchParams, pathname, replace])
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
-  }
+  }, [])
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className=''>
-        <div className='relative'>
-          <Search className='absolute left-2 top-2.5 h-4 w-4 text-muted-foreground' />
-          <Input placeholder='Search anything...' className='pl-8' value={search} onChange={onChange} />
-        </div>
+      <DialogTitle className='hidden'>Tìm kiếm bài dự thi</DialogTitle>
+      <DialogContent className='sm:max-w-[600px]'>
+        <SearchInput value={search} onChange={handleChange} />
+        <SearchResults search={search} isLoading={isLoading} debouncedSearch={debouncedSearch} data={data} />
       </DialogContent>
     </Dialog>
   )
 }
 
-export default ModalSearch
+export default memo(ModalSearch)

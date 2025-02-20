@@ -13,63 +13,65 @@ interface PaginationProps {
 const PaginationCustom = ({ page, totalPages, setPage }: PaginationProps) => {
   const renderPageNumbers = () => {
     const pageNumbers = []
-    const maxVisiblePages = 5
-    const halfVisible = Math.floor(maxVisiblePages / 2)
 
-    let startPage = Math.max(1, page - halfVisible)
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1)
+    // Always show first page
+    pageNumbers.push(
+      <PaginationItem key={1}>
+        <PaginationLink
+          className={`size-[40px] transform cursor-pointer rounded-lg border-2 border-yellow font-medium shadow-sm transition-all duration-300 ease-in-out hover:scale-105 ${
+            page === 1 ? 'bg-yellow text-white hover:border-yellow/90 hover:bg-yellow/90' : 'hover:bg-yellow hover:text-white'
+          }`}
+          onClick={() => setPage(1)}
+        >
+          1
+        </PaginationLink>
+      </PaginationItem>
+    )
 
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1)
-    }
-
-    if (startPage > 1) {
+    // Show ellipsis if needed
+    if (page > 3) {
       pageNumbers.push(
-        <PaginationItem key={1}>
-          <PaginationLink
-            className='size-[40px] transform cursor-pointer rounded-lg border-2 border-yellow font-medium shadow-sm transition-all duration-300 ease-in-out hover:scale-105 hover:bg-yellow hover:text-white'
-            onClick={() => setPage(1)}
-          >
-            1
-          </PaginationLink>
+        <PaginationItem key='ellipsis1'>
+          <span className='pionier px-2 text-yellow'>•••</span>
         </PaginationItem>
       )
-      if (startPage > 2) {
+    }
+
+    // Show current page and neighbors
+    for (let i = Math.max(2, page - 1); i <= Math.min(page + 1, totalPages - 1); i++) {
+      if (i !== 1 && i !== totalPages) {
         pageNumbers.push(
-          <PaginationItem key='ellipsis1'>
-            <span className='pionier px-2 text-yellow'>•••</span>
+          <PaginationItem key={i}>
+            <PaginationLink
+              className={`size-[40px] transform cursor-pointer rounded-lg border-2 border-yellow font-medium shadow-sm transition-all duration-300 ease-in-out hover:scale-105 ${
+                page === i ? 'bg-yellow text-white hover:border-yellow/90 hover:bg-yellow/90' : 'hover:bg-yellow hover:text-white'
+              }`}
+              onClick={() => setPage(i)}
+            >
+              {i}
+            </PaginationLink>
           </PaginationItem>
         )
       }
     }
 
-    for (let i = startPage; i <= endPage; i++) {
+    // Show ellipsis if needed
+    if (page < totalPages - 2) {
       pageNumbers.push(
-        <PaginationItem key={i}>
-          <PaginationLink
-            className={`size-[40px] transform cursor-pointer rounded-lg border-2 border-yellow font-medium shadow-sm transition-all duration-300 ease-in-out hover:scale-105 ${
-              page === i ? 'bg-yellow text-white hover:border-yellow/90 hover:bg-yellow/90' : 'hover:bg-yellow hover:text-white'
-            }`}
-            onClick={() => setPage(i)}
-          >
-            {i}
-          </PaginationLink>
+        <PaginationItem key='ellipsis2'>
+          <span className='pionier px-2 text-yellow'>•••</span>
         </PaginationItem>
       )
     }
 
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        pageNumbers.push(
-          <PaginationItem key='ellipsis2'>
-            <span className='pionier px-2 text-yellow'>•••</span>
-          </PaginationItem>
-        )
-      }
+    // Always show last page
+    if (totalPages > 1) {
       pageNumbers.push(
         <PaginationItem key={totalPages}>
           <PaginationLink
-            className='pionier size-[40px] transform cursor-pointer rounded-lg border-2 border-yellow font-medium shadow-sm transition-all duration-300 ease-in-out hover:scale-105 hover:bg-yellow hover:text-white'
+            className={`size-[40px] transform cursor-pointer rounded-lg border-2 border-yellow font-medium shadow-sm transition-all duration-300 ease-in-out hover:scale-105 ${
+              page === totalPages ? 'bg-yellow text-white hover:border-yellow/90 hover:bg-yellow/90' : 'hover:bg-yellow hover:text-white'
+            }`}
             onClick={() => setPage(totalPages)}
           >
             {totalPages}

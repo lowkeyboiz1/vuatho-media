@@ -8,7 +8,7 @@ const HeroContent = () => {
   ]
   const videoUrl = 'https://archive.org/download/Popeye_forPresident/Popeye_forPresident_512kb.mp4' // Public domain video URL
   return (
-    <div className='grid h-full grid-cols-2 gap-2.5'>
+    <div className='grid h-full grid-cols-1 gap-2.5 lg:grid-cols-2'>
       {/* Video Section */}
       <div className='h-full'>
         <video autoPlay loop muted className='aspect-video h-full w-full rounded-lg object-cover'>
@@ -26,7 +26,7 @@ const HeroContent = () => {
             </div>
           ))}
         </div>
-        <div className='flex gap-4'>
+        <div className='flex flex-col gap-4 lg:flex-row'>
           <div className='relative flex-1'>
             <div className='absolute inset-0 translate-y-1 rounded-lg bg-[#E8CC3F]'></div>
             <Button className='relative flex h-auto w-full flex-col rounded-lg bg-gradient-to-r from-[#FFE467] via-[#FFF492] to-[#FEDD38] text-blue transition-transform active:translate-y-1'>

@@ -24,5 +24,9 @@ export const postServices = {
   getListPost: async (type: TypePost, page: number): Promise<PostResponse> => {
     const response = await instance.get<PostResponse>(`/media-competition?type=${type}&page=${page}`)
     return response.data
+  },
+  getListPostBySearch: async (search: string): Promise<PostResponse> => {
+    const response = await instance.get<PostResponse>(`/media-competition?&search=${search}`)
+    return response.data
   }
 }
