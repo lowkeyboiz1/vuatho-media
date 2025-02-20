@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import ModalConfirm from '@/components/ModalConfirm'
 import ModalDetail from '@/components/ModalDetail'
 import ModalComplete from '@/components/ModalComplete'
+import ModalSearch from '@/components/ModalSearch'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
           <ModalDetail />
           <ModalConfirm />
           <ModalComplete />
+          <ModalSearch />
         </body>
       </Providers>
     </html>

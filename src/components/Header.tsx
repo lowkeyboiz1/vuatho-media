@@ -2,11 +2,15 @@
 import Image from 'next/image'
 import { memo, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
-import { User } from 'lucide-react'
+import { User, Search } from 'lucide-react'
 import Link from 'next/link'
+import { useAtom } from 'jotai'
+import { isOpenModalSearchAtom } from '@/atoms/modal'
 
 const Header = () => {
   const [language, setLanguage] = useState('VN')
+  const [, setIsOpenModalSearch] = useAtom(isOpenModalSearchAtom)
+
   const toggleLanguage = () => {
     const newLanguage = language === 'VN' ? 'EN' : 'VN'
     setLanguage(newLanguage)
@@ -46,6 +50,10 @@ const Header = () => {
           <Image src='/300tr.png' alt='logo' width={100} height={100} />
         </div>
         <div className='flex items-center gap-2'>
+          <ButtonHeader onClick={() => setIsOpenModalSearch(true)} className='flex w-auto items-center justify-between gap-10 rounded-full bg-[#DDE9FF] px-5 text-sm text-blue/70'>
+            <i>Nhập số ID của bạn...</i>
+            <Search size={16} className='text-blue' />
+          </ButtonHeader>
           <ButtonHeader onClick={toggleLanguage}>{language}</ButtonHeader>
           <Link href={getGoogleAuthUrl()} className='w-auto'>
             <ButtonHeader className='flex w-auto items-center gap-2.5 px-3'>

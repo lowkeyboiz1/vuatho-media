@@ -2,6 +2,7 @@ import HeroBanner from '@/components/HeroBanner'
 import Blog from '@/components/sections/Blog'
 import HeroContent from '@/components/sections/HeroContent'
 import ListReview from '@/components/sections/ListReview'
+import { TYPE_POST } from '@/lib/contants'
 import { useGetListPostImage } from '@/query/useGetListPost'
 import Image from 'next/image'
 
@@ -21,8 +22,8 @@ export default function Home() {
             <Image src='/300tr.png' alt='300tr' width={1000} height={1000} />
           </div>
         </div>
-        <ListReview title='phim ngắn' number={6868} />
-        <ListReview title='nhiếp ảnh' number={6868} />
+        <ListReview title='phim ngắn' type={TYPE_POST.IMAGE} />
+        <ListReview title='nhiếp ảnh' type={TYPE_POST.VIDEO} />
         <Blog />
       </div>
     </div>
