@@ -1,8 +1,8 @@
 'use client'
 
 import { isOpenModalSearchAtom } from '@/atoms/modal'
+import ToggleVote from '@/components/ToggleVote'
 import { cn } from '@/lib/utils'
-import { motion } from 'framer-motion'
 import { useAtom } from 'jotai'
 import { Search, User } from 'lucide-react'
 import Image from 'next/image'
@@ -14,6 +14,7 @@ const Header = () => {
   const [, setIsOpenModalSearch] = useAtom(isOpenModalSearchAtom)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
 
   const toggleLanguage = useCallback(() => {
     setLanguage((prev) => {
@@ -86,6 +87,10 @@ const Header = () => {
     }
   }, [openSearchModal])
 
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   return (
     <header
       className={cn(
@@ -110,7 +115,7 @@ const Header = () => {
             </div>
             <div className='flex items-center gap-1'>
               <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-gray-200 bg-white/95 px-1.5 font-mono text-[10px] font-medium text-gray-600 opacity-80'>
-                {navigator?.platform?.toLowerCase()?.includes('mac') ? <span className='text-xs'>⌘</span> : <span className='text-xs'>Ctrl</span>}
+                {isMounted && navigator?.platform?.toLowerCase()?.includes('mac') ? <span className='text-xs'>⌘</span> : <span className='text-xs'>Ctrl</span>}
               </kbd>
               <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-gray-200 bg-white/95 px-1.5 font-mono text-[10px] font-medium text-gray-600 opacity-80'>
                 K
@@ -128,6 +133,7 @@ const Header = () => {
               <p className='hidden font-medium md:block'>Đăng nhập</p>
             </ButtonHeader>
           </Link>
+          <ToggleVote />
         </div>
       </div>
     </header>
@@ -136,14 +142,9 @@ const Header = () => {
 
 const ButtonHeader = memo(({ children, className, onClick }: { children: React.ReactNode; className?: string; onClick?: () => void }) => {
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className={cn('flex cursor-pointer items-center justify-center rounded-lg bg-[#0051E3] text-sm text-white', className)}
-    >
+    <button onClick={onClick} className={cn('flex cursor-pointer items-center justify-center rounded-lg bg-[#0051E3] text-sm text-white active:scale-95', className)}>
       {children}
-    </motion.div>
+    </button>
   )
 })
 

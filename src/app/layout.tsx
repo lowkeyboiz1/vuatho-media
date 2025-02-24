@@ -1,12 +1,14 @@
+import ModalComplete from '@/components/ModalComplete'
+import ModalConfirm from '@/components/ModalConfirm'
+import ModalDetail from '@/components/ModalDetail'
+import ModalSearch from '@/components/ModalSearch'
+import Providers from '@/components/Providers'
+import ScrollToTop from '@/components/ScrollToTop'
+import Footer from '@/layouts/Footer'
+import Header from '@/layouts/Header'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import Providers from '@/components/Providers'
-import Header from '@/components/Header'
-import ModalConfirm from '@/components/ModalConfirm'
-import ModalDetail from '@/components/ModalDetail'
-import ModalComplete from '@/components/ModalComplete'
-import ModalSearch from '@/components/ModalSearch'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,15 +31,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang='vi'>
       <Providers>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} bg-[#FFF6DE] antialiased`}>
           <Header />
           {children}
           <ModalDetail />
           <ModalConfirm />
           <ModalComplete />
           <ModalSearch />
+          <ScrollToTop />
+          <Footer />
         </body>
       </Providers>
     </html>

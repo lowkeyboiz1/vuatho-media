@@ -26,6 +26,7 @@ export const useGetListPostBySearch = (search: string) => {
   return useQuery({
     queryKey: [GET_LIST_POST_BY_SEARCH, search],
     queryFn: async () => await postServices.getListPostBySearch(search),
+    enabled: !!search,
     staleTime: 1000 * 60 // Avoid unnecessary refetches for 60 seconds
   })
 }

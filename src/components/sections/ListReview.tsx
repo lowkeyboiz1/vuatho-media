@@ -9,6 +9,9 @@ import { TYPE_POST } from '@/lib/contants'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useRef } from 'react'
 import CountUp from 'react-countup'
+import { isOpenModalDetailAtom, postSelectedAtom } from '@/atoms/modal'
+import { useAtom, useSetAtom } from 'jotai'
+import { TPost } from '@/types'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -38,6 +41,13 @@ const ListReview = ({ title, type }: { title: string; type: string }) => {
   const ref = useRef(null)
   const isInView = useInView(ref)
   const [visibleItems, setVisibleItems] = useState<number[]>([])
+  const setPostSelected = useSetAtom(postSelectedAtom)
+  const setIsOpenModalDetail = useSetAtom(isOpenModalDetailAtom)
+
+  const handleSelectPost = useCallback((post: TPost) => {
+    setPostSelected(post)
+    setIsOpenModalDetail(true)
+  }, [])
 
   const [page, setPage] = useState({
     image: 1,
@@ -129,7 +139,7 @@ const ListReview = ({ title, type }: { title: string; type: string }) => {
     () =>
       listPost?.data?.map((item, index) => (
         <motion.div key={item.id} variants={itemVariants} initial='hidden' animate={visibleItems.includes(index) ? 'visible' : 'hidden'}>
-          <ItemReview item={item as any} />
+          <ItemReview item={item as any} onClick={() => handleSelectPost(item)} />
         </motion.div>
       )),
     [listPost?.data, visibleItems]
@@ -141,7 +151,7 @@ const ListReview = ({ title, type }: { title: string; type: string }) => {
       initial='hidden'
       animate={isInView ? 'visible' : 'hidden'}
       variants={containerVariants}
-      className='grid w-full grid-cols-1 items-start justify-center gap-6 sm:grid-cols-2 lg:grid-cols-4'
+      className='grid w-full grid-cols-1 items-start justify-center gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4 lg:px-0'
     >
       {renderHeader}
 
