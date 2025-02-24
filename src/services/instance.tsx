@@ -1,13 +1,23 @@
 'use client'
 
 import axios from 'axios'
-
+import { toast } from 'sonner'
+import { tokenAtom } from '@/atoms/token'
+import { useAtom } from 'jotai'
 export const authHeader_Bearer = () => {
+  // const [_, setToken] = useAtom(tokenAtom)
+  // let accessToken = localStorage.getItem('token')
+  // get accessToken from url
+  const url = new URL(window.location.href)
+  const token = url.searchParams.get('token')
   let accessToken = localStorage.getItem('token')
-  console.log({ accessToken })
-  if (accessToken) {
-    accessToken = accessToken.replace(/"/g, '')
-    return { Authorization: 'Bearer ' + accessToken }
+
+  // if (token) {
+  //   setToken(token)
+  // }
+  console.log({ token, url })
+  if (token) {
+    return { Authorization: 'Bearer ' + token || accessToken }
   } else {
     return {}
   }
@@ -64,6 +74,7 @@ instance.interceptors.response.use(
     }
 
     if (error.response) {
+      toast.error(error?.response?.data?.message)
       return Promise.reject({
         status: error.response.status,
         message: error.response.data.message

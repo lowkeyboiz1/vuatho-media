@@ -1,10 +1,11 @@
 import { TYPE_POST, TypePost } from '@/lib/contants'
 import { postServices } from '@/services/api'
-import { useQuery } from '@tanstack/react-query'
-
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { toast } from 'sonner'
 const GET_LIST_POST_IMAGE = 'GET_LIST_POST_IMAGE'
 const GET_LIST_POST_MEDIA = 'GET_LIST_POST_MEDIA'
 const GET_LIST_POST_BY_SEARCH = 'GET_LIST_POST_BY_SEARCH'
+const CREATE_POST = 'CREATE_POST'
 
 export const useGetListPostImage = (page: number = 1) => {
   return useQuery({

@@ -1,21 +1,14 @@
 'use client'
+import { TPost } from '@/types'
 import Image from 'next/image'
 import { memo } from 'react'
 interface ItemReviewProps {
+  item: TPost
   onClick: () => void
-  item: {
-    id: number
-    title: string
-    author: string
-    score: number
-    avatarUrl: string
-    date: string
-    href: string
-  }
 }
 
 const ItemReview = memo(({ item, onClick }: ItemReviewProps) => {
-  const { id, title, author, score, avatarUrl, date, href } = item
+  const { id, title, author, created_at } = item
 
   return (
     <div className='group relative flex cursor-pointer flex-col gap-4 overflow-hidden rounded-2xl bg-white p-4 pb-6 transition hover:bg-blue' onClick={onClick}>
@@ -30,7 +23,7 @@ const ItemReview = memo(({ item, onClick }: ItemReviewProps) => {
         <i>#{id}</i>
         <p className='text-lg font-bold'>{title}</p>
         <p>{author}</p>
-        <i className='text-sm'> Ngày dự thi: {date}</i>
+        <i className='text-sm'> Ngày dự thi: {created_at}</i>
       </div>
     </div>
   )

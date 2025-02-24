@@ -21,3 +21,17 @@ export type TPostResponse = {
     totalPages: number
   }
 }
+
+type InputType = 'text' | 'textarea' | 'file' | 'checkbox' | 'gender'
+
+export type FieldConfig = {
+  type: InputType
+  placeholder?: string
+  title: string | React.ReactNode
+  halfWidth?: boolean
+}
+
+export type SectionConfig = {
+  title: string
+  fields: Record<string, FieldConfig>
+}

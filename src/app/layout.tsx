@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner'
 import ModalComplete from '@/components/ModalComplete'
 import ModalConfirm from '@/components/ModalConfirm'
 import ModalDetail from '@/components/ModalDetail'
@@ -42,6 +43,7 @@ export default function RootLayout({
           <ModalSearch />
           <ScrollToTop />
           <Footer />
+          <Toaster />
         </body>
       </Providers>
     </html>

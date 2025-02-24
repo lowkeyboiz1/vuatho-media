@@ -1,15 +1,19 @@
 'use client'
 
 import { isOpenModalSearchAtom } from '@/atoms/modal'
+import { tokenAtom } from '@/atoms/token'
+import { LogoIcon } from '@/components/Icons'
 import ToggleVote from '@/components/ToggleVote'
 import { cn } from '@/lib/utils'
-import { useAtom } from 'jotai'
-import { Search, User } from 'lucide-react'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { LogOut, Search, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { memo, useCallback, useEffect, useState } from 'react'
 
 const Header = () => {
+  const token = useAtomValue(tokenAtom)
+  const setToken = useSetAtom(tokenAtom)
   const [language, setLanguage] = useState('VN')
   const [, setIsOpenModalSearch] = useAtom(isOpenModalSearchAtom)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -22,18 +26,6 @@ const Header = () => {
       localStorage.setItem('language', newLanguage)
       return newLanguage
     })
-  }, [])
-
-  const getGoogleAuthUrl = useCallback(() => {
-    const url = 'https://accounts.google.com/o/oauth2/auth'
-    const query = {
-      client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
-      redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI!,
-      response_type: 'code',
-      scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'].join(' '),
-      prompt: 'consent'
-    }
-    return `${url}?${new URLSearchParams(query).toString()}`
   }, [])
 
   useEffect(() => {
@@ -100,8 +92,8 @@ const Header = () => {
       )}
     >
       <div className='container mx-auto flex h-full items-center justify-between px-4'>
-        <Link href='/'>
-          <Image src='/300tr.png' alt='logo' width={90} height={90} priority className='h-auto w-auto' />
+        <Link href='/' className='size-[50px]'>
+          <LogoIcon className='size-full object-cover' />
         </Link>
 
         <div className='flex items-center gap-2'>
@@ -126,13 +118,26 @@ const Header = () => {
           <ButtonHeader onClick={toggleLanguage} className='h-10 w-10 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg'>
             {language}
           </ButtonHeader>
-
-          <Link href={getGoogleAuthUrl()} className='w-auto'>
-            <ButtonHeader className='flex h-10 w-10 items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg md:w-auto md:px-4'>
-              <User size={16} />
-              <p className='hidden font-medium md:block'>Đăng nhập</p>
+          {token ? (
+            <ButtonHeader
+              onClick={() => {
+                localStorage.removeItem('token')
+                setToken(null)
+              }}
+              className='flex h-10 w-10 items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg md:w-auto md:px-4'
+            >
+              <LogOut size={16} />
+              <p className='hidden font-medium md:block'>Đăng xuất</p>
             </ButtonHeader>
-          </Link>
+          ) : (
+            <Link href={`${process.env.NEXT_PUBLIC_LOGIN_URL}/auth/google`} className='w-auto'>
+              <ButtonHeader className='flex h-10 w-10 items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg md:w-auto md:px-4'>
+                <User size={16} />
+                <p className='hidden font-medium md:block'>Đăng nhập</p>
+              </ButtonHeader>
+            </Link>
+          )}
+
           <ToggleVote />
         </div>
       </div>

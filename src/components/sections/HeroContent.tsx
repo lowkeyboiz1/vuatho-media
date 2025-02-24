@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 const HeroContent = () => {
   const content = [
@@ -29,17 +30,21 @@ const HeroContent = () => {
         <div className='flex flex-col gap-4 lg:flex-row'>
           <div className='relative flex-1'>
             <div className='absolute inset-0 translate-y-1 rounded-lg bg-[#E8CC3F]'></div>
-            <Button className='relative flex h-auto w-full flex-col rounded-lg bg-gradient-to-r from-[#FFE467] via-[#FFF492] to-[#FEDD38] text-blue transition-transform active:translate-y-1'>
-              <p className='text-lg font-bold uppercase'>HẠNG MỤC PHIM NGẮN</p>
-              <i className='text-sm'>(Chi tiết thể lệ)</i>
-            </Button>
+            <Link href='/film'>
+              <Button className='relative flex h-auto w-full flex-col rounded-lg bg-gradient-to-r from-[#FFE467] via-[#FFF492] to-[#FEDD38] text-blue transition-transform active:translate-y-1'>
+                <p className='text-lg font-bold uppercase'>HẠNG MỤC PHIM NGẮN</p>
+                <i className='text-sm'>(Chi tiết thể lệ)</i>
+              </Button>
+            </Link>
           </div>
           <div className='relative flex-1'>
             <div className='absolute inset-0 translate-y-1 rounded-lg bg-[#E8CC3F]'></div>
-            <Button className='relative flex h-auto w-full flex-col rounded-lg bg-gradient-to-r from-[#FFE467] via-[#FFF492] to-[#FEDD38] text-blue transition-transform active:translate-y-1'>
-              <p className='text-lg font-bold uppercase'>HẠNG MỤC NHIẾP ẢNH</p>
-              <i className='text-sm'>(Chi tiết thể lệ)</i>
-            </Button>
+            <Link href='/photo'>
+              <Button className='relative flex h-auto w-full flex-col rounded-lg bg-gradient-to-r from-[#FFE467] via-[#FFF492] to-[#FEDD38] text-blue transition-transform active:translate-y-1'>
+                <p className='text-lg font-bold uppercase'>HẠNG MỤC NHIẾP ẢNH</p>
+                <i className='text-sm'>(Chi tiết thể lệ)</i>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
