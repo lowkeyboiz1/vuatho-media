@@ -21,6 +21,7 @@ const Film = () => {
 
   const newConfigs = removeFields(FIELD_CONFIGS, fieldsToRemove)
   const newSchema = removeKeyOfSchema(formSchema, fieldsToRemove)
+
   return (
     <div className='container mx-auto flex flex-col gap-10 py-24'>
       <h1 className='text-center text-4xl font-bold uppercase text-blue'>{title}</h1>

@@ -1,11 +1,16 @@
+'use client'
+
 import HeroBanner from '@/components/HeroBanner'
 import Blog from '@/components/sections/Blog'
 import HeroContent from '@/components/sections/HeroContent'
 import ListReview from '@/components/sections/ListReview'
+import { translate } from '@/components/TranslationProvider'
 import { TYPE_POST } from '@/lib/contants'
 import Image from 'next/image'
 
 export default function Home() {
+  const s = translate('Header')
+
   return (
     <div className='flex flex-col'>
       <div className='relative h-dvh w-full overflow-hidden'>
