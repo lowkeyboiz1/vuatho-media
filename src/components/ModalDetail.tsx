@@ -1,6 +1,7 @@
 'use client'
 
 import { isOpenModalConfirmAtom, isOpenModalDetailAtom, postSelectedAtom } from '@/atoms/modal'
+import { isCanVoteAtom } from '@/atoms/switch'
 import { scoreAtom } from '@/atoms/vote'
 import { SelectableStars } from '@/components/SelectableStars'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
@@ -17,7 +18,7 @@ const ModalDetail = () => {
   const postSelected = useAtomValue(postSelectedAtom)
   const [score, setScore] = useAtom(scoreAtom)
   const [isOpenModalConfirm, setIsOpenModalConfirm] = useAtom(isOpenModalConfirmAtom)
-
+  const isCanVote = useAtomValue(isCanVoteAtom)
   const handleVote = (score: number) => {
     setScore(score)
     setIsOpenModalConfirm(true)
@@ -50,10 +51,12 @@ const ModalDetail = () => {
               )}
             </div>
             <p className='text-sm text-gray-500'>{postSelected?.description}</p>
-            <div className='mt-10 flex flex-col items-center justify-center gap-1 lg:flex-row'>
-              <p>Bình chọn:</p>
-              <SelectableStars onChange={handleVote} />
-            </div>
+            {isCanVote && (
+              <div className='mt-10 flex flex-col items-center justify-center gap-1 lg:flex-row'>
+                <p>Bình chọn:</p>
+                <SelectableStars onChange={handleVote} />
+              </div>
+            )}
           </div>
         </DialogContent>
       </ScrollArea>

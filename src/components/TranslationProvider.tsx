@@ -16,15 +16,14 @@ export const translate = (key: string) => {
 // Context Provider component
 export const TranslationProvider = ({ children }: { children: React.ReactNode }) => {
   //convert lang to locale
-  const queryParams = new URLSearchParams(location.search)
-  const locale = queryParams.get('lang') || 'vi'
-  const [language, setLanguage] = useState(locale)
+  const lang = localStorage.getItem('lang')
+  const [language, setLanguage] = useState(lang || 'vi')
   const [trans, setTranslations] = useState<any>(vi)
-
   useEffect(() => {
     const loadTranslations = async () => {
       try {
-        const translateFile = (await import(`@/messages/${locale}.json`))?.default
+        const translateFile = (await import(`@/messages/${language}.json`))?.default
+        console.log({ translateFile })
         setTranslations(translateFile)
       } catch (error) {
         console.error('Error loading translations:', error)
@@ -32,8 +31,7 @@ export const TranslationProvider = ({ children }: { children: React.ReactNode })
     }
 
     loadTranslations()
-    setLanguage(locale)
-  }, [locale])
+  }, [language])
 
   // Function to get messages
   const getMessages = (key: string) => {
@@ -51,6 +49,7 @@ export const TranslationProvider = ({ children }: { children: React.ReactNode })
   // Function to change language
   const changeLanguage = (newLanguage: string) => {
     setLanguage(newLanguage)
+    localStorage.setItem('lang', newLanguage)
   }
 
   return <TranslationContext.Provider value={{ language, changeLanguage, t: getMessages }}>{children}</TranslationContext.Provider>

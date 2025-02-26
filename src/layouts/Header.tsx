@@ -3,6 +3,7 @@
 import { isOpenModalSearchAtom } from '@/atoms/modal'
 import { LogoIcon } from '@/components/Icons'
 import ToggleVote from '@/components/ToggleVote'
+import { translate, useTranslation } from '@/components/TranslationProvider'
 import { cn } from '@/lib/utils'
 import { useAtom } from 'jotai'
 import { LogOut, Search, User } from 'lucide-react'
@@ -10,28 +11,30 @@ import Link from 'next/link'
 import { memo, useCallback, useEffect, useState } from 'react'
 
 const Header = () => {
+  const { language, changeLanguage } = useTranslation()
+
   const token = localStorage.getItem('token')
   const [isLogin, setIsLogin] = useState(!!token)
-  const [language, setLanguage] = useState('VN')
   const [, setIsOpenModalSearch] = useAtom(isOpenModalSearchAtom)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
 
+  const t = translate('Header')
+
+  console.log({ t, title: t.title })
+
   const toggleLanguage = useCallback(() => {
-    setLanguage((prev) => {
-      const newLanguage = prev === 'VN' ? 'EN' : 'VN'
-      localStorage.setItem('language', newLanguage)
-      return newLanguage
-    })
-  }, [])
+    console.log({ language })
+    changeLanguage((language === 'vi' ? 'En' : 'Vi').toLowerCase())
+  }, [changeLanguage, language])
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language')
+    const savedLanguage = localStorage.getItem('lang')
     if (savedLanguage) {
-      setLanguage(savedLanguage)
+      changeLanguage(savedLanguage)
     }
-  }, [])
+  }, [changeLanguage])
 
   useEffect(() => {
     let rafId: number
@@ -114,7 +117,7 @@ const Header = () => {
           </ButtonHeader>
 
           <ButtonHeader onClick={toggleLanguage} className='h-10 w-10 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg'>
-            {language}
+            {language.charAt(0).toUpperCase() + language.slice(1)}
           </ButtonHeader>
           {isLogin ? (
             <ButtonHeader

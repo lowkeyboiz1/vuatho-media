@@ -9,13 +9,13 @@ export const authHeader_Bearer = () => {
   const url = new URL(window.location.href)
   const token = url.searchParams.get('token')
   let accessToken = localStorage.getItem('token')
-
+  const lang = localStorage.getItem('lang')
   // if (token) {
   //   setToken(token)
   // }
   console.log({ token, url })
   if (token || accessToken) {
-    return { Authorization: 'Bearer ' + accessToken || token }
+    return { Authorization: 'Bearer ' + accessToken || token, lang }
   } else {
     return {}
   }

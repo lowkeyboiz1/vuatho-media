@@ -11,12 +11,14 @@ import { TPost } from '@/types'
 import { getYoutubeId } from '@/utils'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { motion } from 'framer-motion'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { Search } from 'lucide-react'
 import Image from 'next/image'
 import React, { memo, useCallback, useState } from 'react'
+import { isCanVoteAtom } from '@/atoms/switch'
 
 const SearchResults = memo(({ search, isLoading, data }: { search: string; isLoading: boolean; data: TPost[] }) => {
+  const isCanVote = useAtomValue(isCanVoteAtom)
   if (!search) return null
 
   return (
@@ -60,10 +62,12 @@ const SearchResults = memo(({ search, isLoading, data }: { search: string; isLoa
                 </div>
               </div>
               <p className='line-clamp-4 min-h-[80px]'>{item.description}</p>
-              <div className='flex flex-col lg:flex-row lg:items-center lg:gap-2'>
-                <p className='font-bold'>Bình chọn:</p>
-                <SelectableStars />
-              </div>
+              {isCanVote && (
+                <div className='flex flex-col lg:flex-row lg:items-center lg:gap-2'>
+                  <p className='font-bold'>Bình chọn:</p>
+                  <SelectableStars />
+                </div>
+              )}
             </div>
           </div>
         ))
