@@ -1,6 +1,5 @@
 import { GENDER_OPTIONS, TYPE_POST, TypePost } from '@/lib/contants'
 import { FieldConfig, SectionConfig } from '@/types'
-import { platform } from 'os'
 import { z } from 'zod'
 
 const getYoutubeId = (url: string) => {
@@ -25,6 +24,26 @@ function removeFields(configs: SectionConfig[], fieldsToRemove: string[]) {
 
     return { ...section, fields: newFields }
   })
+}
+
+function pickKeysOfSchema(schema: any, fieldsToKeep: string[]) {
+  const shape: any = Object.fromEntries(Object.entries(schema.shape).filter(([key]) => fieldsToKeep.includes(key)))
+  return z.object(shape)
+}
+
+function pickFields(configs: SectionConfig[], fieldsToKeep: string[]) {
+  return configs
+    .map((section) => {
+      const newFields = Object.keys(section.fields)
+        .filter((key) => fieldsToKeep.includes(key))
+        .reduce((acc: any, key) => {
+          acc[key] = section.fields[key]
+          return acc
+        }, {}) as Record<string, FieldConfig>
+
+      return { ...section, fields: newFields }
+    })
+    .filter((section) => Object.keys(section.fields).length > 0)
 }
 
 //  Hàm lấy danh sách các trường bắt buộc từ formSchema
@@ -85,7 +104,7 @@ const objectToFormData = (obj: any) => {
   return formData
 }
 
-function convertToNewFormat(frontendData: any, typePost: TypePost, typeCompetition: 1 | 2) {
+function convertToNewFormat(frontendData: any, typePost: TypePost, typeCompetition: number) {
   // Xác định giới tính dạng số (1 cho nam, 0 cho nữ)
   // Giả sử "nam" là 1, các giá trị khác là 0
   const genderValue = frontendData?.gender === 'nam' ? GENDER_OPTIONS.MALE : GENDER_OPTIONS.FEMALE
@@ -117,4 +136,4 @@ function convertToNewFormat(frontendData: any, typePost: TypePost, typeCompetiti
   }
 }
 
-export { getYoutubeId, removeKeyOfSchema, getRequiredFields, objectToFormData, convertToNewFormat, removeFields }
+export { convertToNewFormat, getRequiredFields, getYoutubeId, objectToFormData, pickFields, pickKeysOfSchema, removeFields, removeKeyOfSchema }

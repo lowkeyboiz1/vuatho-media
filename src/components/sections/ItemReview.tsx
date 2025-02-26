@@ -2,13 +2,14 @@
 import { TPost } from '@/types'
 import Image from 'next/image'
 import { memo } from 'react'
+import { Button } from '../ui/button'
 interface ItemReviewProps {
   item: TPost
   onClick: () => void
 }
 
 const ItemReview = memo(({ item, onClick }: ItemReviewProps) => {
-  const { id, title, author, created_at } = item
+  const { id, title, author, created_at, total_score } = item
 
   return (
     <div className='group relative flex cursor-pointer flex-col gap-4 overflow-hidden rounded-2xl bg-white p-4 pb-6 transition hover:bg-blue' onClick={onClick}>
@@ -25,6 +26,14 @@ const ItemReview = memo(({ item, onClick }: ItemReviewProps) => {
         <p>{author}</p>
         <i className='text-sm'> Ngày dự thi: {created_at}</i>
       </div>
+      <div className='h-px bg-gradient-to-r from-[#054ABA] via-[#279DE7] to-[#054ABA] px-10 opacity-0 transition group-hover:opacity-100' />
+      <p className='text-center text-sm group-hover:text-white'>Điểm bình chọn: {total_score.toLocaleString('en-US')}</p>
+      <Button
+        onClick={onClick}
+        className='w-full rounded-full border border-blue bg-transparent font-bold uppercase text-blue shadow-none hover:bg-transparent hover:text-white group-hover:border-white group-hover:text-white'
+      >
+        Bình chọn ngay
+      </Button>
     </div>
   )
 })

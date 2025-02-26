@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { defaultValues } from '@/forms/formDefaults'
 import { formSchema, FormValues } from '@/forms/formSchema'
 import { TYPE_INPUT, TypePost } from '@/lib/contants'
+import { cn } from '@/lib/utils'
 import { useCreatePost } from '@/query/useCreatePost'
 import { postServices } from '@/services/api'
 import { SectionConfig } from '@/types'
@@ -20,21 +21,25 @@ import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 type TSubmissionForm = {
-  title: string
+  title?: string
   type: TypePost
   fieldConfigs: SectionConfig[]
   formSchema: any
+  handleSubmit?: (data: FormValues) => void
+  className?: string
+  note?: React.ReactNode
+  classNameContainer?: string
 }
 
-const SubmissionForm = ({ title, type, fieldConfigs, formSchema }: TSubmissionForm) => {
+const SubmissionForm = ({ title, type, fieldConfigs, formSchema, handleSubmit, className, note, classNameContainer }: TSubmissionForm) => {
   const [imageToUpdateIndex, setImageToUpdateIndex] = useState<number | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [previewImages, setPreviewImages] = useState<string[]>([])
 
   const { mutate: createPost, isPending } = useCreatePost({
     onSuccess: () => {
-      // form.reset()
-      // setPreviewImages([])
+      form.reset()
+      setPreviewImages([])
       toast('Bài dự thi đã được gửi thành công')
     }
   })
@@ -50,26 +55,43 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema }: TSubmissionFo
       const files = event.target.files
       if (!files || files.length === 0) return
 
-      const newFile = files[0]
-      const newImageUrl = URL.createObjectURL(newFile)
       const currentFiles = form.getValues('artworkFile') || []
-
       let updatedFiles = [...currentFiles]
       let updatedImages = [...previewImages]
 
-      if (imageToUpdateIndex !== null) {
-        updatedFiles[imageToUpdateIndex] = newFile // Thay thế file cũ
-        updatedImages[imageToUpdateIndex] = newImageUrl // Thay thế ảnh cũ
-      } else {
-        updatedFiles.push(newFile) // Thêm file mới
-        updatedImages.push(newImageUrl) // Thêm ảnh mới
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i]
+
+        // Kiểm tra kích thước file (tối đa 6MB)
+        if (file.size > 6 * 1024 * 1024) {
+          alert('Ảnh vượt quá 6MB, vui lòng chọn ảnh nhỏ hơn!')
+          continue
+        }
+
+        const imageUrl = URL.createObjectURL(file)
+
+        if (imageToUpdateIndex !== null) {
+          // Thay thế ảnh cũ
+          updatedFiles[imageToUpdateIndex] = file
+          updatedImages[imageToUpdateIndex] = imageUrl
+          setImageToUpdateIndex(null) // Reset state sau khi cập nhật
+        } else {
+          // Chỉ thêm ảnh nếu chưa đạt giới hạn 5 ảnh
+          if (updatedFiles.length < 5) {
+            updatedFiles.push(file)
+            updatedImages.push(imageUrl)
+          } else {
+            alert('Bạn chỉ có thể tải lên tối đa 5 ảnh!')
+            break
+          }
+        }
       }
 
+      // Cập nhật form
       form.setValue('artworkFile', updatedFiles, { shouldValidate: true, shouldDirty: true, shouldTouch: true })
       setPreviewImages(updatedImages)
 
-      setImageToUpdateIndex(null) // Reset state
-      event.target.value = ''
+      event.target.value = '' // Reset input file để chọn lại
     },
     [form, imageToUpdateIndex, previewImages]
   )
@@ -92,9 +114,13 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema }: TSubmissionFo
     }
   }
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Form data:', data)
-    const newData = convertToNewFormat(data, type, 1)
+  const onSubmit = async (data: FormValues) => {
+    if (handleSubmit) {
+      handleSubmit(data)
+      return
+    }
+    const res = await postServices.getTypePost(type)
+    const newData = convertToNewFormat(data, type, res || 1)
     const formData = objectToFormData(newData)
     createPost(formData)
   }
@@ -102,16 +128,16 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema }: TSubmissionFo
   const requiredFields = React.useMemo(() => getRequiredFields(formSchema), [formSchema])
 
   return (
-    <Card className='mx-auto w-full max-w-4xl p-6'>
+    <Card className={cn('mx-auto w-full max-w-4xl p-6', classNameContainer)}>
       <CardContent>
-        <p className='py-5 text-center text-2xl font-bold uppercase text-blue'>{title}</p>
+        {title ? <p className='py-5 text-center text-2xl font-bold uppercase text-blue'>{title}</p> : null}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
             {fieldConfigs.map((item, index) => {
               return (
                 <div key={index}>
                   <h3 className='my-4 text-lg font-semibold'>{item.title}</h3>
-                  <div className='flex w-full grid-cols-1 flex-col gap-4 md:grid md:grid-cols-2'>
+                  <div className={cn('flex w-full grid-cols-1 flex-col gap-4 md:grid md:grid-cols-2', className)}>
                     {Object.entries(item.fields).map(([key, config]) => {
                       const isRequired = requiredFields.has(key as keyof FormValues)
                       // Nếu là artworkFile thì render UI upload file
@@ -129,22 +155,24 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema }: TSubmissionFo
                                     <input type='file' ref={fileInputRef} className='hidden' accept='image/*' multiple onChange={handleImageUpload} />
                                     <div className='mt-2 flex w-full flex-wrap gap-2'>
                                       {previewImages.map((src, index) => (
-                                        <div key={index} className='relative size-48 overflow-hidden rounded-lg border'>
-                                          <img src={src} alt={`preview ${index}`} className='size-full object-cover' />
-                                          <button
-                                            type='button'
-                                            onClick={() => handleRemoveImage(index)}
-                                            className='absolute right-0 top-0 flex-shrink-0 rounded-full bg-red-500 p-2 text-xs text-white hover:bg-red-600'
-                                          >
-                                            <Trash size={16} />
-                                          </button>
-                                          <button
-                                            type='button'
-                                            onClick={() => handleUpdateImage(index)}
-                                            className='absolute bottom-0 right-0 flex-shrink-0 rounded-full bg-blue-500 p-2 text-xs text-white hover:bg-blue-600'
-                                          >
-                                            <Pencil size={16} />
-                                          </button>
+                                        <div key={index} className='group relative flex size-48 justify-center overflow-hidden rounded-lg border'>
+                                          <img src={src} alt={`preview ${index}`} className='size-full object-cover transition-opacity duration-300 group-hover:opacity-50' />
+                                          <div className='absolute inset-0 flex items-center justify-center gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
+                                            <button
+                                              type='button'
+                                              onClick={() => handleRemoveImage(index)}
+                                              className='flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white hover:bg-red-600'
+                                            >
+                                              <Trash size={16} />
+                                            </button>
+                                            <button
+                                              type='button'
+                                              onClick={() => handleUpdateImage(index)}
+                                              className='flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 p-2 text-xs text-white hover:bg-blue-600'
+                                            >
+                                              <Pencil size={16} />
+                                            </button>
+                                          </div>
                                         </div>
                                       ))}
                                       {previewImages.length < 5 && (
@@ -216,12 +244,18 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema }: TSubmissionFo
           </form>
         </Form>
 
-        <p className='mt-4 text-sm font-bold uppercase'>Lưu ý:</p>
-        <ul className='list-disc pl-4 text-sm text-gray-500'>
-          <li>Các trường thông tin có dấu (*) là bắt buộc phải điền.</li>
-          <li>Người dự thi cần đọc kỹ thể lệ, quy định của cuộc thi trước khi đăng ký.</li>
-          <li>Ban Tổ chức có quyền yêu cầu người dự thi cung cấp thêm thông tin hoặc tài liệu liên quan đến tác phẩm dự thi.</li>
-        </ul>
+        {!!note ? (
+          note
+        ) : (
+          <>
+            <p className='mt-4 text-sm font-bold uppercase'>Lưu ý:</p>
+            <ul className='list-disc pl-4 text-sm text-gray-500'>
+              <li>Các trường thông tin có dấu (*) là bắt buộc phải điền.</li>
+              <li>Người dự thi cần đọc kỹ thể lệ, quy định của cuộc thi trước khi đăng ký.</li>
+              <li>Ban Tổ chức có quyền yêu cầu người dự thi cung cấp thêm thông tin hoặc tài liệu liên quan đến tác phẩm dự thi.</li>
+            </ul>
+          </>
+        )}
       </CardContent>
     </Card>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { isOpenModalConfirmAtom, postSelectedAtom } from '@/atoms/modal'
+import { isOpenModalCompleteAtom, isOpenModalConfirmAtom, isOpenModalDetailAtom, postSelectedAtom } from '@/atoms/modal'
 import { Button } from '@/components/ui/button'
 import { useAtom, useAtomValue } from 'jotai'
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog'
@@ -13,15 +13,21 @@ import { Loader2 } from 'lucide-react'
 
 const ModalConfirm = () => {
   const [isOpen, setIsOpen] = useAtom(isOpenModalConfirmAtom)
+  const [isOpenComplete, setIsOpenComplete] = useAtom(isOpenModalCompleteAtom)
+  const [isOpenUpdateUser, setIsOpenUpdateUser] = useAtom(isOpenModalDetailAtom)
+
   const [postSelected, setPostSelected] = useAtom(postSelectedAtom)
   const [score, setScore] = useAtom(scoreAtom)
   const { mutate: mutateVote, isPending } = useMutation({
     mutationFn: ({ postId, vote }: { postId: string; vote: number }) => postServices.votePost(postId, vote),
-    onSuccess: () => {
+    onSuccess: (res: any) => {
       toast.success('Bình chọn thành công')
       setIsOpen(false)
       setScore(0)
       setPostSelected(null)
+      console.log({ res })
+      setIsOpenComplete(res.data.isUpdateUser)
+      setIsOpenUpdateUser(res.data.isUpdateUser)
     }
   })
 

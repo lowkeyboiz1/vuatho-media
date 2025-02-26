@@ -16,7 +16,7 @@ const Photo = () => {
     { value: 'Is it animated', question: 'Is it animated?', answer: "Yes. It's animated by default, but you can disable it if you prefer." }
   ]
   const [activeItem, setActiveItem] = useState<string | null>(data[0].value)
-  const fieldsToRemove = ['artworkFile']
+  const fieldsToRemove = ['']
 
   const newConfigs = removeFields(FIELD_CONFIGS, fieldsToRemove)
   const newSchema = removeKeyOfSchema(formSchema, fieldsToRemove)

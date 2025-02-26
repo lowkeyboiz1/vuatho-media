@@ -15,15 +15,17 @@ export const postServices = {
     const response = await instance.post<TPostResponse>('/media-competition/contest/submit', data)
     return response.data
   },
-  getTypePost: async (type: TypePost): Promise<number | null> => {
+  getTypePost: async (type: TypePost): Promise<number> => {
     const response = await instance.get<TPostResponse>('/media-competition')
-    console.log({ type })
     const typePost = response.data.data.find((item) => item.type === type)
-    console.log({ typePost })
-    return typePost ? typePost.id : null
+    return typePost?.id || 1
   },
   votePost: async (postId: string, vote: number): Promise<TPostResponse> => {
     const response = await instance.post<TPostResponse>(`/media-competition/contest/vote/${postId}`, { vote })
+    return response.data
+  },
+  userInfo: async ({ name, phone }: { name: string; phone: string }): Promise<void> => {
+    const response = await instance.post<void>('/media-competition/update-user-google', { name, phone })
     return response.data
   }
 }

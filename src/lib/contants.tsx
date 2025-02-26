@@ -45,7 +45,7 @@ const FIELD_CONFIGS: SectionConfig[] = [
       ekip: { type: TYPE_INPUT.TEXTAREA, placeholder: 'Đạo diễn: Trần Văn B, Diễn viên chính: Nguyễn Văn A, Quay phim: Lê Thị C, Biên kịch: Phạm Minh D', title: 'Ekip/ Diễn viên' },
       artworkFile: { type: TYPE_INPUT.FILE, title: 'Hình ảnh tác phẩm' },
       videoLink: { type: TYPE_INPUT.TEXT, placeholder: 'http://facebook.com/username', title: 'Link video' },
-      driveFile: {
+      drive_link: {
         type: TYPE_INPUT.TEXT,
         placeholder: 'https://drive.google.com/file/d/file_id/view',
         title: 'File Drive (nếu có)'

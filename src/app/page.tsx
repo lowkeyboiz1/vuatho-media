@@ -13,21 +13,21 @@ export default function Home() {
 
   return (
     <div className='flex flex-col'>
-      <div className='relative h-dvh w-full overflow-hidden'>
-        {/* Video Background */}
+      <div className='relative aspect-[16/9] w-full overflow-hidden md:aspect-[21/9]'>
         <div className='z-1 absolute inset-0'>
           <HeroBanner />
         </div>
       </div>
-      <div className='container mx-auto *:py-24'>
+
+      <div className='container mx-auto *:py-10 lg:py-24 *:lg:py-24'>
         <HeroContent />
         <div className='flex items-center justify-center'>
-          <div className='w-[419px]'>
+          <div className='w-[800px]'>
             <Image src='/300tr.png' alt='300tr' width={1000} height={1000} />
           </div>
         </div>
-        <ListReview title='phim ngắn' type={TYPE_POST.IMAGE} />
-        <ListReview title='nhiếp ảnh' type={TYPE_POST.VIDEO} />
+        <ListReview title='phim ngắn' type={TYPE_POST.VIDEO} />
+        <ListReview title='nhiếp ảnh' type={TYPE_POST.IMAGE} />
         <Blog />
       </div>
     </div>

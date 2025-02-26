@@ -2,8 +2,6 @@
 
 import axios from 'axios'
 import { toast } from 'sonner'
-import { tokenAtom } from '@/atoms/token'
-import { useAtom } from 'jotai'
 export const authHeader_Bearer = () => {
   // const [_, setToken] = useAtom(tokenAtom)
   // let accessToken = localStorage.getItem('token')
@@ -16,8 +14,8 @@ export const authHeader_Bearer = () => {
   //   setToken(token)
   // }
   console.log({ token, url })
-  if (token) {
-    return { Authorization: 'Bearer ' + token || accessToken }
+  if (token || accessToken) {
+    return { Authorization: 'Bearer ' + accessToken || token }
   } else {
     return {}
   }

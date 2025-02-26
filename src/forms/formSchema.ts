@@ -16,7 +16,7 @@ export const formSchema = z.object({
   artworkDescription: z.string().max(500, 'Tối đa 500 từ').min(1, 'Mô tả tác phẩm là bắt buộc'),
   videoLink: z.string().min(1, 'Link phim là bắt buộc').url('Link phim không hợp lệ'),
   ekip: z.string().optional(),
-  driveFile: z.string().optional(),
+  drive_link: z.string().optional(),
   policies: z.object({
     policy1: z.boolean().refine((val) => val === true, {
       message: 'Bạn phải đồng ý với điều khoản này'

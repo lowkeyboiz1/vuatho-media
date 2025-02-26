@@ -1,19 +1,17 @@
 'use client'
 
 import { isOpenModalSearchAtom } from '@/atoms/modal'
-import { tokenAtom } from '@/atoms/token'
 import { LogoIcon } from '@/components/Icons'
 import ToggleVote from '@/components/ToggleVote'
 import { cn } from '@/lib/utils'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { LogOut, Search, User } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { memo, useCallback, useEffect, useState } from 'react'
 
 const Header = () => {
-  const token = useAtomValue(tokenAtom)
-  const setToken = useSetAtom(tokenAtom)
+  const token = localStorage.getItem('token')
+  const [isLogin, setIsLogin] = useState(!!token)
   const [language, setLanguage] = useState('VN')
   const [, setIsOpenModalSearch] = useAtom(isOpenModalSearchAtom)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -118,11 +116,11 @@ const Header = () => {
           <ButtonHeader onClick={toggleLanguage} className='h-10 w-10 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg'>
             {language}
           </ButtonHeader>
-          {token ? (
+          {isLogin ? (
             <ButtonHeader
               onClick={() => {
                 localStorage.removeItem('token')
-                setToken(null)
+                setIsLogin(false)
               }}
               className='flex h-10 w-10 items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg md:w-auto md:px-4'
             >

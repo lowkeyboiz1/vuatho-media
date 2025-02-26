@@ -15,7 +15,7 @@ export const artworkInfo = {
   artworkDescription: '',
   artworkFile: [],
   videoLink: '',
-  driveFile: '',
+  drive_link: '',
   ekip: ''
 }
 
