@@ -12,25 +12,105 @@
         "content3": "Participants may enter individually or in groups (no limit on group size). In the case of group entries, one representative must be designated to communicate with the Organizing Committee (OC)."
       },
       "section2": {
-        "title": "Requirements for the Submitted Work"
+        "title": "Requirements for the Submitted Work",
+        "subTitle1": "Format and Movie Specifications",
+        "content11": "The submitted short film must be in MP4 or MOV format, with a minimum resolution of Full HD (1920x1080).",
+        "content12": "The film duration should be at least 2 minutes and no more than 20 minutes (including introduction and credits).",
+        "content13": "The film must be fully copyrighted by the author, with no content copied from other sources.",
+        "content14": "The video must be an original work, not previously submitted to any other competition, and produced within 2 years prior to submission.",
+        "content15": "Language: Vietnamese (English subtitles are encouraged for foreign-language dialogues), and subtitle format must align with the video format.",
+        "content16": "Each author may submit a maximum of 3 films, but they must be registered under one name.",
+        "subTitle2": "Content Requirements",
+        "content21": "The film should authentically reflect the life and work of the workers, or share meaningful stories about their labor journey.",
+        "content22": "Genres: Diverse (documentaries, feature films, animation, etc.).",
+        "content23": "Style: Creative, unique, and engaging.",
+        "content24": "Note: Do not submit works that are off-topic from what the Organizing Committee requires.",
+        "content25": "The Organizing Committee reserves the right to reject works that are not relevant to the topic or violate the regulations.",
+        "subTitle3": "Encouraged Themes",
+        "content31": "Inspirational stories about workers.",
+        "content32": "Occupations that bring value to the community.",
+        "content33": "The beauty of labor and the perseverance in work.",
+        "content34": "Professions available on the Vua Thợ app.",
+        "note": "The Organizing Committee may request the original file from authors for verification if necessary."
       },
       "section3": {
-        "title": "Submission Time and Method"
+        "title": "Submission Time and Method",
+        "subTitle1": "Submission Period:",
+        "content11": "From 01/01/2025 to 20/06/2025.",
+        "subTitle2": "Submission Method:",
+        "content21": "Participants submit their short films via the official competition website.",
+        "subTitle3": "Required Information:",
+        "content31": "Author's/full name or group representative.",
+        "content32": "Contact address, phone number, email.",
+        "content33": "Film title.",
+        "content34": "Film introduction (no more than 500 words).",
+        "content35": "Film file with complete copyright information.",
+        "note": "The Organizing Committee will send a confirmation email upon receiving a valid submission."
       },
       "section4": {
-        "title": "Legal Regulations"
+        "title": "Legal Regulations",
+        "content1": "Participants are responsible for copyright and all related issues arising from their submitted works.",
+        "content2": "Participants have the right to receive support regarding information, materials, or guidance from the Organizing Committee.",
+        "content3": "The Organizing Committee is not responsible for any copyright or intellectual property disputes regarding the submitted works.",
+        "content4": "The Organizing Committee reserves the right to disqualify any work if a violation of the rules or any other legal regulations is discovered, without prior notice.",
+        "content5": "Submitted works must not violate Vietnamese cultural values, nor affect the honor or reputation of individuals/organizations.",
+        "content6": "By participating in the competition, participants agree to grant Vua Thợ full rights to use the submitted works for media activities without any additional fees. The author retains ownership of the work but cannot use it to participate in other competitions during the competition period.",
+        "content7": "If there are any complaints related to the competition results, participants can submit a request within 07 days after the results are announced.",
+        "content8": "Throughout the competition, if any unforeseen issues arise, the decision of the Organizing Committee will be final."
       },
       "section5": {
-        "title": "Prize Structure"
+        "title": "Prize Structure",
+        "content11": "First Prize: ",
+        "content12": "50 million VND (1 prize)",
+        "content21": "Second Prize: ",
+        "content22": "30 million VND (1 prize)",
+        "content31": "Third Prize: ",
+        "content32": "15 million VND (1 prize)",
+        "content41": "Audience Choice Award: ",
+        "content42": "2 million VND (5 prizes – The Organizing Committee will randomly select 5 people from the list of voters for the winning film)"
       },
       "section6": {
-        "title": "Judging Process"
+        "title": "Judging Process",
+        "subTitle1": "Round 1: Submission and Preliminary Selection (01/01/2025 - 20/06/2025)",
+        "content11": "Participants create films based on the competition's theme.",
+        "content12": "Like and Follow the Vua Thợ Fanpage - 'Thợ nào cũng có'.",
+        "content13": "Upload the competition video on their personal Facebook in public mode with hashtags #VuaTho #ToaSangCungVuaTho and a brief description.",
+        "content14": "Fill out the registration form on the competition website and follow the instructions.",
+        "content15": "The Organizing Committee will review submissions within 48 hours before posting them on the official voting platform.",
+        "subTitle2": "Round 2: Top 10 Announcement and Voting (27/06/2025 - 30/06/2025)",
+        "content21": "On 27/06/2025, the Organizing Committee will announce the Top 10 best works selected by the Jury.",
+        "content22": "The Organizing Committee will open the voting portal on the competition website until the end of 30/06/2025.",
+        "subTitle3": "Round 3: Results Announcement and Award Ceremony (02/07/2025)",
+        "content31": "The final results will be announced on 02/07/2025.",
+        "content32": "Winning authors will be invited by the Organizing Committee to attend the Award Ceremony and receive their prizes and certificates.",
+        "content33": "The prize money will be subject to personal income tax deductions according to the current regulations in Vietnam."
       },
       "section7": {
-        "title": "Judging Criteria"
+        "title": "Judging Criteria",
+        "content1": "40% from audience voting",
+        "content2": "Based on the number of votes on the official website of the Organizing Committee.",
+        "content3": "60% from the Jury Panel,",
+        "content4": "evaluated based on three criteria:",
+        "criteria1": {
+          "title": "Content and Theme: ",
+          "description": "Clearly reflects the work of craftsmen and the meaning of creativity."
+        },
+        "criteria2": {
+          "title": "Filming and Editing Techniques: ",
+          "description": "Camera angles, lighting, sound, and reasonable editing."
+        },
+        "criteria3": {
+          "title": "Creativity: ",
+          "description": "A unique and engaging storytelling approach."
+        }
       },
       "section8": {
-        "title": "Complaint Resolution"
+        "title": "Complaint Resolution",
+        "content1": "Individuals have the right to file complaints regarding the competition results. The complaint must include the full name, address, reason for the complaint, and be sent to the Organizing Unit. The Organizing Unit is responsible for reviewing and responding to the complaint and reporting the resolution results to the Organizing Committee. Complaints without a name, clear address, or submitted anonymously or under a false identity will not be considered.",
+        "content2": "The Organizing Committee will revoke prizes and notify the relevant authorities to handle the situation according to the law in the following cases:",
+        "case1": "The submitted work violates the Press Law, Publishing Law, Copyright Law, Intellectual Property Law, or other relevant state laws and the competition rules.",
+        "case2": "Using the awarded prize to engage in illegal activities.",
+        "case3": "The revocation of prizes will be publicly announced on mass media channels."
       }
     }
   }

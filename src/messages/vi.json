@@ -12,25 +12,105 @@
         "content3": "Có thể tham gia cá nhân hoặc theo nhóm (không giới hạn số lượng thành viên). Trong trường hợp tham gia theo nhóm, cần chỉ định một người đại diện chính thức để liên hệ với Ban Tổ chức (BTC)."
       },
       "section2": {
-        "title": "YÊU CẦU VỀ TÁC PHẨM DỰ THI"
+        "title": "YÊU CẦU VỀ TÁC PHẨM DỰ THI",
+        "subTitle1": "Hình thức và định dạng phim",
+        "content11": "Phim ngắn dự thi phải có định dạng MP4, MOV, với độ phân giải tối thiểu Full HD (1920x1080).",
+        "content12": "Thời lượng phim tối thiểu 02 phút, tối đa 20 phút (bao gồm phần intro giới thiệu và credit).",
+        "content13": "Phim phải có đầy đủ bản quyền của tác giả, không sao chép từ nguồn khác.",
+        "content14": "Video phải là sản phẩm mới, chưa tham gia cuộc thi nào trước đó và được sản xuất trong vòng 02 năm tính từ ngày nộp bài.",
+        "content15": "Ngôn ngữ: Tiếng Việt (khuyến khích có phụ đề tiếng Anh nếu có lời thoại tiếng nước ngoài), định dạng phụ đề phải phù hợp với định dạng video.",
+        "content16": "Mỗi tác giả có thể gửi tối đa 03 video nhưng phải thống nhất một tên đăng ký.",
+        "subTitle2": "Nội dung tác phẩm",
+        "content21": "Phim dự thi cần phản ánh chân thực về người thợ, công việc của họ hoặc những câu chuyện ý nghĩa trong quá trình lao động.",
+        "content22": "Thể loại: Đa dạng (phim tài liệu, phim truyện, phim hoạt hình,...).",
+        "content23": "Hình thức: Sáng tạo, độc đáo, hấp dẫn.",
+        "content24": "Lưu ý không gửi các tác phẩm lạc chủ đề mà Ban Tổ chức yêu cầu.",
+        "content25": "Ban Tổ chức có quyền từ chối các tác phẩm không phù hợp với chủ đề hoặc vi phạm các quy định.",
+        "subTitle3": "Các chủ đề khuyến khích:",
+        "content31": "Câu chuyện truyền cảm hứng về người thợ.",
+        "content32": "Những nghề nghiệp mang giá trị cho cộng đồng.",
+        "content33": "Vẻ đẹp lao động, tinh thần kiên trì trong công việc.",
+        "content34": "Các ngành nghề đang có trên ứng dụng Vua Thợ.",
+        "note": "Trong trường hợp cần thiết, Ban Tổ chức có quyền yêu cầu tác giả nộp file gốc để đối chiếu."
       },
       "section3": {
-        "title": "THỜI GIAN VÀ CÁCH THỨC THAM GIA"
+        "title": "THỜI GIAN VÀ CÁCH THỨC THAM GIA",
+        "subTitle1": "Thời gian gửi bài dự thi:",
+        "content11": "Từ 01/01/2025 đến 20/06/2025.",
+        "subTitle2": "Hình thức gửi bài:",
+        "content21": "Thí sinh gửi phim ngắn dự thi qua website chính thức của cuộc thi.",
+        "subTitle3": "Thông tin yêu cầu:",
+        "content31": "Họ và tên tác giả/đại diện nhóm.",
+        "content32": "Địa chỉ liên hệ, số điện thoại, email.",
+        "content33": "Tiêu đề phim.",
+        "content34": "Lời giới thiệu về phim (không quá 500 từ).",
+        "content35": "File phim có đầy đủ thông tin về bản quyền.",
+        "note": "Ban Tổ chức sẽ gửi email xác nhận khi nhận được bài dự thi hợp lệ."
       },
       "section4": {
-        "title": "QUY ĐỊNH PHÁP LÝ"
+        "title": "QUY ĐỊNH PHÁP LÝ",
+        "content1": "Thí sinh chịu trách nhiệm về tác quyền và mọi vấn đề phát sinh liên quan đến tác phẩm dự thi.",
+        "content2": "Thí sinh có quyền được hỗ trợ về thông tin, tài liệu hoặc hướng dẫn từ Ban Tổ chức.",
+        "content3": "Ban Tổ chức không chịu trách nhiệm nếu xảy ra tranh chấp về bản quyền hoặc tác quyền trong bài dự thi.",
+        "content4": "Ban Tổ chức có quyền loại bỏ tác phẩm nếu phát hiện vi phạm thể lệ hoặc các quy định khác theo pháp luật hiện hành mà không cần thông báo trước.",
+        "content5": "Tác phẩm dự thi không vi phạm thuần phong mỹ tục Việt Nam, không ảnh hưởng đến danh dự, uy tín cá nhân/tổ chức khác.",
+        "content6": "Khi tham gia cuộc thi, thí sinh đồng ý cho phép Vua Thợ toàn quyền sử dụng tác phẩm vào các hoạt động truyền thông mà không cần trả thêm bất kỳ khoản phí nào. Tác giả vẫn giữ quyền sở hữu tác phẩm nhưng không được sử dụng nó để tham gia cuộc thi khác trong thời gian cuộc thi diễn ra.",
+        "content7": "Nếu có khiếu nại liên quan đến kết quả cuộc thi, thí sinh có thể gửi yêu cầu trong vòng 07 ngày sau khi công bố kết quả.",
+        "content8": "Trong suốt cuộc thi, nếu phát sinh vấn đề ngoài ý muốn, quyết định của Ban Tổ chức sẽ là quyết định cuối cùng."
       },
       "section5": {
-        "title": "CƠ CẤU GIẢI THƯỞNG"
+        "title": "CƠ CẤU GIẢI THƯỞNG",
+        "content11": "Giải Nhất: ",
+        "content12": "50 triệu đồng (1 giải)",
+        "content21": "Giải Nhì: ",
+        "content22": "30 triệu đồng (1 giải)",
+        "content31": "Giải Ba: ",
+        "content32": "15 triệu đồng (1 giải)",
+        "content41": "Giải dành cho khán giả bình chọn: ",
+        "content42": "2 triệu đồng (5 giải – Ban Tổ chức chọn ngẫu nhiên 5 người trong danh sách bình chọn cho phim đạt giải Nhất)"
       },
       "section6": {
-        "title": "QUY TRÌNH CHẤM GIẢI"
+        "title": "QUY TRÌNH CHẤM GIẢI",
+        "subTitle1": "Vòng 1: Nhận bài và sơ tuyển (01/01/2025 - 20/06/2025)",
+        "content11": "Thí sinh sản xuất phim theo chủ đề của cuộc thi.",
+        "content12": "Nhấn Thích và Theo dõi Fanpage Vua Thợ - Thợ nào cũng có.",
+        "content13": "Đăng tải video dự thi lên Facebook cá nhân ở chế độ công khai kèm hashtag #VuaTho #ToaSangCungVuaTho và phần mô tả ngắn gọn.",
+        "content14": "Điền form đăng ký trên trang web cuộc thi và làm theo hướng dẫn.",
+        "content15": "Ban Tổ chức kiểm duyệt bài dự thi trong vòng 48 giờ trước khi đăng tải lên cổng bình chọn chính thức.",
+        "subTitle2": "Vòng 2: Công bố Top 10 và bình chọn (27/06/2025 - 30/06/2025)",
+        "content21": "Ngày 27/06/2025, Ban Tổ chức công bố Top 10 tác phẩm xuất sắc nhất do Ban Giám khảo chọn.",
+        "content22": "Ban Tổ chức mở cổng bình chọn trên website cuộc thi đến hết ngày 30/06/2025.",
+        "subTitle3": "Vòng 3: Công bố kết quả và trao giải (02/07/2025)",
+        "content31": "Kết quả chung cuộc sẽ được công bố vào ngày 02/07/2025.",
+        "content32": "Các tác giả đạt giải sẽ được Ban Tổ chức mời tham dự Lễ công bố và trao giải thưởng và giấy chứng nhận.",
+        "content33": "Tiền thưởng sẽ được Ban Tổ chức khấu trừ tiền thuế thu nhập cá nhân theo quy định Việt Nam hiện hành."
       },
       "section7": {
-        "title": "TIÊU CHÍ CHẤM GIẢI"
+        "title": "TIÊU CHÍ CHẤM GIẢI",
+        "content1": "40% điểm từ bình chọn: ",
+        "content2": "Dựa trên số lượt bình chọn trên website chính thức của Ban Tổ chức.",
+        "content3": "60% điểm từ Ban Giám khảo,",
+        "content4": "đánh giá theo 3 tiêu chí:",
+        "criteria1": {
+          "title": "Nội dung và chủ đề: ",
+          "description": "Phản ánh rõ nét công việc của người thợ, ý nghĩa sáng tạo."
+        },
+        "criteria2": {
+          "title": "Kỹ thuật quay dựng: ",
+          "description": "Góc máy, ánh sáng, âm thanh, biên tập hợp lý."
+        },
+        "criteria3": {
+          "title": "Tính sáng tạo: ",
+          "description": "Cách truyền tải mới lạ, hấp dẫn."
+        }
       },
       "section8": {
-        "title": "GIẢI QUYẾT KHIẾU NẠI"
+        "title": "GIẢI QUYẾT KHIẾU NẠI",
+        "content1": "Các cá nhân có quyền khiếu nại về kết quả cuộc thi. Đơn khiếu nại phải ghi rõ họ tên, địa chỉ, lý do khiếu nại và gửi tới Đơn vị tổ chức thực hiện. Đơn vị tổ chức thực hiện có trách nhiệm xem xét và trả lời đơn khiếu nại, báo cáo kết quả giải quyết khiếu nại lên Ban Tổ chức. Không xem xét đơn không có tên, địa chỉ rõ ràng hoặc nặc danh, mạo danh.",
+        "content2": "Ban Tổ chức sẽ thu hồi giải thưởng, thông báo cơ quan chức năng để giải quyết theo quy định của pháp luật đối với các trường hợp sau:",
+        "case1": "Tác phẩm tham dự vi phạm Luật Báo chí, Luật Xuất bản, Luật Bản quyền, Luật Sở hữu trí tuệ, các quy định pháp luật của Nhà nước có liên quan và Thể lệ Cuộc thi này.",
+        "case2": "Lợi dụng giải thưởng được trao để thực hiện hành vi phạm pháp luật.",
+        "case3": "Việc thu hồi giải thưởng sẽ được công bố công khai trên các phương tiện thông tin đại chúng."
       }
     }
   }
