@@ -1,5 +1,37 @@
 {
   "Header": {
     "title": "Chat"
+  },
+  "Film": {
+    "title": "FORM ĐĂNG KÝ DỰ THI PHIM NGẮN",
+    "accordion": {
+      "section1": {
+        "title": "ĐỐI TƯỢNG DỰ THI",
+        "content1": "Công dân Việt Nam hoặc người nước ngoài đủ 18 tuổi trở lên.",
+        "content2": "Cuộc thi dành cho tất cả các nhà làm phim chuyên nghiệp và không chuyên.",
+        "content3": "Có thể tham gia cá nhân hoặc theo nhóm (không giới hạn số lượng thành viên). Trong trường hợp tham gia theo nhóm, cần chỉ định một người đại diện chính thức để liên hệ với Ban Tổ chức (BTC)."
+      },
+      "section2": {
+        "title": "YÊU CẦU VỀ TÁC PHẨM DỰ THI"
+      },
+      "section3": {
+        "title": "THỜI GIAN VÀ CÁCH THỨC THAM GIA"
+      },
+      "section4": {
+        "title": "QUY ĐỊNH PHÁP LÝ"
+      },
+      "section5": {
+        "title": "CƠ CẤU GIẢI THƯỞNG"
+      },
+      "section6": {
+        "title": "QUY TRÌNH CHẤM GIẢI"
+      },
+      "section7": {
+        "title": "TIÊU CHÍ CHẤM GIẢI"
+      },
+      "section8": {
+        "title": "GIẢI QUYẾT KHIẾU NẠI"
+      }
+    }
   }
 }

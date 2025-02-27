@@ -17,7 +17,7 @@ const DifferentContent = () => {
       image: '/1.png'
     },
     {
-      title: 'Từ ngày 01.01 đến hết ngày 20.06.2025',
+      title: 'Từ ngày 01.02 đến hết ngày 20.06.2025',
       content: {
         title: 'Vòng 1: Nhận bài và sơ tuyển',
         data: [

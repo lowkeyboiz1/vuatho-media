@@ -1,5 +1,37 @@
 {
   "Header": {
     "title": "Chat123"
+  },
+  "Film": {
+    "title": "SHORT FILM REGISTRATION FORM",
+    "accordion": {
+      "section1": {
+        "title": "Eligibility",
+        "content1": "Vietnamese citizens or foreigners aged 18 and above.",
+        "content2": "The competition is open to both professional and amateur filmmakers.",
+        "content3": "Participants may enter individually or in groups (no limit on group size). In the case of group entries, one representative must be designated to communicate with the Organizing Committee (OC)."
+      },
+      "section2": {
+        "title": "Requirements for the Submitted Work"
+      },
+      "section3": {
+        "title": "Submission Time and Method"
+      },
+      "section4": {
+        "title": "Legal Regulations"
+      },
+      "section5": {
+        "title": "Prize Structure"
+      },
+      "section6": {
+        "title": "Judging Process"
+      },
+      "section7": {
+        "title": "Judging Criteria"
+      },
+      "section8": {
+        "title": "Complaint Resolution"
+      }
+    }
   }
 }
