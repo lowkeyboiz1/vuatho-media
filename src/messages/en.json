@@ -1,6 +1,8 @@
 {
   "Header": {
-    "title": "Chat123"
+    "login": "Login",
+    "search": "Enter your post ID...",
+    "logout": "Logout"
   },
   "Film": {
     "title": "SHORT FILM REGISTRATION FORM",
@@ -308,5 +310,8 @@
       "note2": "Participants should carefully read the competition rules and regulations before registering.",
       "note3": "The Organizing Committee reserves the right to request additional information or documents related to the submitted work."
     }
+  },
+  "Article": {
+    "text1": "Read more"
   }
 }

@@ -1,4 +1,4 @@
-import { LogoIcon } from '@/components/Icons'
+import { LogoIcon2 } from '@/components/Icons'
 import ListSocialItem from '@/components/ListSocialItem'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import Image from 'next/image'
@@ -31,7 +31,7 @@ const Footer = () => {
         <div className='container mx-auto flex w-full flex-col items-center gap-8 px-6 md:flex-row md:items-start md:justify-between'>
           {/* Logo */}
           <div className='flex justify-center md:justify-start'>
-            <LogoIcon />
+            <LogoIcon2 />
           </div>
 
           {/* Company Info */}

@@ -1,8 +1,7 @@
 'use client'
 
 import { isOpenModalSearchAtom } from '@/atoms/modal'
-import { LogoIcon } from '@/components/Icons'
-import ToggleVote from '@/components/ToggleVote'
+import { LogoIcon1, LogoIcon2 } from '@/components/Icons'
 import { translate, useTranslation } from '@/components/TranslationProvider'
 import { cn } from '@/lib/utils'
 import { useAtom } from 'jotai'
@@ -13,19 +12,18 @@ import { memo, useCallback, useEffect, useState } from 'react'
 const Header = () => {
   const { language, changeLanguage } = useTranslation()
 
-  const token = localStorage.getItem('token')
-  const [isLogin, setIsLogin] = useState(!!token)
+  const [isLogin, setIsLogin] = useState(false)
   const [, setIsOpenModalSearch] = useAtom(isOpenModalSearchAtom)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
-
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    setIsLogin(!!token)
+  }, [])
   const t = translate('Header')
 
-  // console.log({ t, title: t.title })
-
   const toggleLanguage = useCallback(() => {
-    console.log({ language })
     changeLanguage((language === 'vi' ? 'En' : 'Vi').toLowerCase())
   }, [changeLanguage, language])
 
@@ -87,14 +85,14 @@ const Header = () => {
   return (
     <header
       className={cn(
-        'fixed left-0 right-0 top-0 z-50 h-[60px] py-2.5 shadow-[0px_4px_3.5px_0px_#00000021] transition-all duration-300 backdrop:blur-xl',
+        'fixed left-0 right-0 top-0 z-[100] h-[60px] py-2.5 shadow-[0px_4px_3.5px_0px_#00000021] transition-all duration-300 backdrop:blur-xl',
         isScrolled ? 'bg-white' : 'bg-blue/10',
         isVisible ? 'translate-y-0' : '-translate-y-full'
       )}
     >
       <div className='container mx-auto flex h-full items-center justify-between px-4'>
         <Link href='/' className='size-[50px]'>
-          <LogoIcon className='size-full object-cover' />
+          {isScrolled ? <LogoIcon1 className='size-full object-cover' /> : <LogoIcon2 className='size-full object-cover' />}
         </Link>
 
         <div className='flex items-center gap-2'>
@@ -104,7 +102,7 @@ const Header = () => {
           >
             <div className='flex items-center gap-2'>
               <Search size={16} className='text-blue' />
-              <span className='text-gray-600'>Nhập số ID của bạn...</span>
+              <span className='text-gray-600'>{t.search}</span>
             </div>
             <div className='flex items-center gap-1'>
               <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-gray-200 bg-white/95 px-1.5 font-mono text-[10px] font-medium text-gray-600 opacity-80'>
@@ -128,18 +126,16 @@ const Header = () => {
               className='flex h-10 w-10 items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg md:w-auto md:px-4'
             >
               <LogOut size={16} />
-              <p className='hidden font-medium md:block'>Đăng xuất</p>
+              <p className='hidden font-medium md:block'>{t.logout}</p>
             </ButtonHeader>
           ) : (
             <Link href={`${process.env.NEXT_PUBLIC_LOGIN_URL}/auth/google`} className='w-auto'>
               <ButtonHeader className='flex h-10 w-10 items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg md:w-auto md:px-4'>
                 <User size={16} />
-                <p className='hidden font-medium md:block'>Đăng nhập</p>
+                <p className='hidden font-medium md:block'>{t.login}</p>
               </ButtonHeader>
             </Link>
           )}
-
-          <ToggleVote />
         </div>
       </div>
     </header>

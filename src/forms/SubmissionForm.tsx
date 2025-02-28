@@ -1,3 +1,4 @@
+import { translate, useTranslation } from '@/components/TranslationProvider'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -7,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
 import { defaultValues } from '@/forms/formDefaults'
-import { formSchema, FormValues } from '@/forms/formSchema'
+import { FormValues } from '@/forms/formSchema'
 import { TYPE_INPUT, TypePost } from '@/lib/contants'
 import { cn } from '@/lib/utils'
 import { useCreatePost } from '@/query/useCreatePost'
@@ -35,7 +36,8 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema, handleSubmit, c
   const [imageToUpdateIndex, setImageToUpdateIndex] = useState<number | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [previewImages, setPreviewImages] = useState<string[]>([])
-
+  const f = translate('Form.section2')
+  const { language } = useTranslation()
   const { mutate: createPost, isPending } = useCreatePost({
     onSuccess: () => {
       form.reset()
@@ -45,7 +47,7 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema, handleSubmit, c
   })
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema as any),
+    resolver: zodResolver(formSchema),
     defaultValues: useMemo(() => defaultValues, [])
   })
 
@@ -125,7 +127,7 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema, handleSubmit, c
     createPost(formData)
   }
 
-  const requiredFields = React.useMemo(() => getRequiredFields(formSchema), [formSchema])
+  const requiredFields = React.useMemo(() => getRequiredFields(formSchema), [formSchema, language])
 
   return (
     <Card className={cn('mx-auto w-full max-w-4xl p-6', classNameContainer)}>
@@ -218,11 +220,11 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema, handleSubmit, c
                                     <RadioGroup name={key} onValueChange={field.onChange} value={field.value} className='flex gap-6'>
                                       <div className='flex items-center space-x-2'>
                                         <RadioGroupItem value='nam' id='nam' />
-                                        <Label htmlFor='nam'>Nam</Label>
+                                        <Label htmlFor='nam'>{language === 'vi' ? 'Nam' : 'Male'}</Label>
                                       </div>
                                       <div className='flex items-center space-x-2'>
                                         <RadioGroupItem value='nữ' id='nữ' />
-                                        <Label htmlFor='nữ'>Nữ</Label>
+                                        <Label htmlFor='nữ'>{language === 'vi' ? 'Nữ' : 'Female'}</Label>
                                       </div>
                                     </RadioGroup>
                                   ) : null}
@@ -248,11 +250,11 @@ const SubmissionForm = ({ title, type, fieldConfigs, formSchema, handleSubmit, c
           note
         ) : (
           <>
-            <p className='mt-4 text-sm font-bold uppercase'>Lưu ý:</p>
+            <p className='mt-4 text-sm font-bold uppercase'>{f.note}</p>
             <ul className='list-disc pl-4 text-sm text-gray-500'>
-              <li>Các trường thông tin có dấu (*) là bắt buộc phải điền.</li>
-              <li>Người dự thi cần đọc kỹ thể lệ, quy định của cuộc thi trước khi đăng ký.</li>
-              <li>Ban Tổ chức có quyền yêu cầu người dự thi cung cấp thêm thông tin hoặc tài liệu liên quan đến tác phẩm dự thi.</li>
+              <li>{f.note1}</li>
+              <li>{f.note2}</li>
+              <li>{f.note3}</li>
             </ul>
           </>
         )}

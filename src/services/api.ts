@@ -29,3 +29,10 @@ export const postServices = {
     return response.data
   }
 }
+
+export const articleServices = {
+  getListArticle: async (locale: string = 'vi'): Promise<TPostResponse> => {
+    const response = await instance.get<TPostResponse>(`/home/blogs?lang=${locale}`)
+    return response.data
+  }
+}

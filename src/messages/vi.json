@@ -1,6 +1,8 @@
 {
   "Header": {
-    "title": "Chat"
+    "search": "Nhập số ID của bạn",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất"
   },
   "Film": {
     "title": "FORM ĐĂNG KÝ DỰ THI PHIM NGẮN",
@@ -263,50 +265,14 @@
   },
   "Form": {
     "title": "FORM ĐĂNG KÝ DỰ THI NHIẾP ẢNH",
-    "section1": {
-      "subtitle": "THÔNG TIN CÁ NHÂN",
-      "content1": "Họ và tên: ",
-      "content11": "Nhập họ và tên...",
-      "content2": "Giới tính: ",
-      "content22": "Nam",
-      "content23": "Nữ",
-      "content3": "Nghệ danh (nếu có):",
-      "content33": "Nhập nghệ danh",
-      "content4:": "Năm sinh: ",
-      "content44": "01/01/2000",
-      "content5": "Email: ",
-      "content55": "nguyenvanan@gmail.com",
-      "content6": "Số điện thoại: ",
-      "content66": "0123 456 789",
-      "content7": "Địa chỉ liên hệ:",
-      "content77": "Số nhà, đường, khu phố, phường, quận/huyện/thành phố, tỉnh.",
-      "content8": "Link Facebook cá nhân:",
-      "content88": "http://facebook.com/username"
-    },
     "section2": {
-      "title": "THÔNG TIN TÁC PHẨM",
-      "content1": "Tên tác phẩm: ",
-      "content11": "Anh Thợ của tôi",
-      "content2": "Mô tả ngắn về tác phẩm",
-      "content3": "(tối đa 500 từ)",
-      "content31": "Mô tả tác phẩm",
-      "content4": "Tải ảnh dự thi: ",
-      "content41": "Mỗi tài khoản dự thi chỉ được gửi tối đa 05 tác phẩm",
-      "content5": "Link phim trên Facebook/Youtube:",
-      "content51": "http://facebook.com/username",
-      "content6": "File Drive (nếu có)",
-      "content7": "(nếu có)",
-      "content77": "https://drive.google.com/file/d/file_id/view",
-      "case1": "Tôi cam kết đã đọc và hiểu rõ",
-      "case2": "Thể lệ, Quy định",
-      "case3": "của cuộc thi 'Sáng tạo không giới hạn, tỏa sáng cùng Vua Thợ'. ",
-      "case4": "Tôi cam kết tác phẩm dự thi là",
-      "case5": "nguyên bản, không vi phạm bản quyền và tuân thủ các quy định của pháp luật.",
-      "case6": "Tôi đồng ý cho phép Ban Tổ chức sử dụng tác phẩm của tôi cho mục đích truyền thông, quảng bá về cuộc thi.",
       "note": "LƯU Ý:",
       "note1": "Các trường thông tin có dấu (*) là bắt buộc phải điền.",
       "note2": "Người dự thi cần đọc kỹ thể lệ, quy định của cuộc thi trước khi đăng ký.",
       "note3": "Ban Tổ chức có quyền yêu cầu người dự thi cung cấp thêm thông tin hoặc tài liệu liên quan đến tác phẩm dự thi."
     }
+  },
+  "Article": {
+    "text1": "Xem thêm"
   }
 }

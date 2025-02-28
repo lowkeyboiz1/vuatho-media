@@ -7,7 +7,7 @@ import vi from '@/messages/vi.json'
 const TranslationContext = createContext<any>({})
 
 // Custom hook to use TranslationContext
-export const useTranslation = () => useContext(TranslationContext)
+export const useTranslation = (): { language: string; changeLanguage: (newLanguage: string) => void; t: (key: string) => string } => useContext(TranslationContext)
 
 export const translate = (key: string) => {
   const { t } = useContext(TranslationContext)
@@ -16,14 +16,17 @@ export const translate = (key: string) => {
 // Context Provider component
 export const TranslationProvider = ({ children }: { children: React.ReactNode }) => {
   //convert lang to locale
-  const lang = localStorage.getItem('lang')
-  const [language, setLanguage] = useState(lang || 'vi')
+  const [language, setLanguage] = useState('vi')
   const [trans, setTranslations] = useState<any>(vi)
+
+  useEffect(() => {
+    const lang = localStorage.getItem('lang') || 'vi'
+    setLanguage(lang)
+  }, [])
   useEffect(() => {
     const loadTranslations = async () => {
       try {
         const translateFile = (await import(`@/messages/${language}.json`))?.default
-        console.log({ translateFile })
         setTranslations(translateFile)
       } catch (error) {
         console.error('Error loading translations:', error)

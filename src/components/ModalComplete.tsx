@@ -10,15 +10,16 @@ import { useMutation } from '@tanstack/react-query'
 import { useAtom } from 'jotai'
 import { memo } from 'react'
 import { toast } from 'sonner'
+import { useTranslation } from './TranslationProvider'
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog'
 import { ScrollArea } from './ui/scroll-area'
 const ModalComplete = () => {
   const [isOpenUpdateUser, setIsOpenUpdateUser] = useAtom(isOpenModalDetailAtom)
   const [isOpenComplete, setIsOpenComplete] = useAtom(isOpenModalCompleteAtom)
-
+  const { language } = useTranslation()
   const fieldsToKeep = ['name', 'phone']
-  const newConfigs = pickFields(FIELD_CONFIGS, fieldsToKeep)
-  const newSchema = pickKeysOfSchema(formSchema, fieldsToKeep)
+  const newConfigs = pickFields(FIELD_CONFIGS(), fieldsToKeep)
+  const newSchema = pickKeysOfSchema(formSchema(), fieldsToKeep)
   const { mutate: mutateUserInfo } = useMutation({
     mutationFn: (data: { name: string; phone: string }) => postServices.userInfo(data),
     onSuccess: () => {
@@ -33,7 +34,6 @@ const ModalComplete = () => {
   })
   const [isOpen, setIsOpen] = useAtom(isOpenModalCompleteAtom)
   const handleSubmit = (data: FormValues) => {
-    console.log(data)
     mutateUserInfo({ name: data.name, phone: data.phone })
   }
 

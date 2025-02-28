@@ -25,7 +25,6 @@ const ModalConfirm = () => {
       setIsOpen(false)
       setScore(0)
       setPostSelected(null)
-      console.log({ res })
       setIsOpenComplete(res.data.isUpdateUser)
       setIsOpenUpdateUser(res.data.isUpdateUser)
     }
