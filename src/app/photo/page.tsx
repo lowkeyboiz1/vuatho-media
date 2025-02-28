@@ -1,19 +1,29 @@
 'use client'
 
 import DifferentContent from '@/components/DifferentContent'
+import { useState } from 'react'
+
+import { useTranslation } from '@/components/TranslationProvider'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+
 import { formSchema } from '@/forms/formSchema'
 import SubmissionForm from '@/forms/SubmissionForm'
 import { FIELD_CONFIGS, TYPE_POST } from '@/lib/contants'
 import { removeFields, removeKeyOfSchema } from '@/utils'
-import { useState } from 'react'
 
 const Photo = () => {
-  const title = 'FORM ĐĂNG KÝ DỰ THI NHIẾP ẢNH'
+  const { t } = useTranslation()
+
+  const title = t('Photo.title')
   const data = [
-    { value: 'Đối tượng dự thi', question: 'Is it accessible?', answer: <DifferentContent /> },
-    { value: 'YÊU CẦU VỀ TÁC PHẨM DỰ THI', question: 'Is it styled?', answer: "Yes. It comes with default styles that matches the other components' aesthetic." },
-    { value: 'Is it animated', question: 'Is it animated?', answer: "Yes. It's animated by default, but you can disable it if you prefer." }
+    { value: t('Photo.accordion.section1.title'), question: t('Photo.accordion.section1.title'), answer: <Accordion1Content /> },
+    { value: t('Photo.accordion.section2.title'), question: t('Photo.accordion.section2.title'), answer: <Accordion2Content /> },
+    { value: t('Photo.accordion.section3.title'), question: t('Photo.accordion.section3.title'), answer: <Accordion3Content /> },
+    { value: t('Photo.accordion.section4.title'), question: t('Photo.accordion.section4.title'), answer: <Accordion4Content /> },
+    { value: t('Photo.accordion.section5.title'), question: t('Photo.accordion.section5.title'), answer: <Accordion5Content /> },
+    { value: t('Photo.accordion.section6.title'), question: t('Photo.accordion.section6.title'), answer: <DifferentContent /> },
+    { value: t('Photo.accordion.section7.title'), question: t('Photo.accordion.section7.title'), answer: <Accordion7Content /> },
+    { value: t('Photo.accordion.section8.title'), question: t('Photo.accordion.section8.title'), answer: <Accordion8Content /> }
   ]
   const [activeItem, setActiveItem] = useState<string | null>(data[0].value)
   const fieldsToRemove = ['']
@@ -32,12 +42,217 @@ const Photo = () => {
               <AccordionTrigger className={`px-4 py-2 text-xl uppercase ${isActive ? 'rounded-lg bg-yellow font-bold' : 'rounded-lg bg-yellow/20'}`}>
                 {index + 1}. {item.question}
               </AccordionTrigger>
-              <AccordionContent className='pb-4'>{item.answer}</AccordionContent>
+              <AccordionContent className='px-5 pb-3 pt-2 text-base'>{item.answer}</AccordionContent>
             </AccordionItem>
           )
         })}
       </Accordion>
       <SubmissionForm title={title} type={TYPE_POST.IMAGE} fieldConfigs={newConfigs} formSchema={newSchema} />
+    </div>
+  )
+}
+
+const Accordion1Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <ul className='list-inside list-disc'>
+      <li>{t('Photo.accordion.section1.content1')}</li>
+      <li>{t('Photo.accordion.section1.content2')}</li>
+      <li>{t('Photo.accordion.section1.content3')}</li>
+    </ul>
+  )
+}
+
+const Accordion2Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <div>
+      <h3 className='mt-2 text-lg font-semibold'>{t('Photo.accordion.section2.subTitle1')}</h3>
+      <ul className='list-inside list-disc'>
+        <li>{t('Photo.accordion.section2.content11')}</li>
+        <li>{t('Photo.accordion.section2.content12')}</li>
+        <li>{t('Photo.accordion.section2.content13')}</li>
+        <li>{t('Photo.accordion.section2.content14')}</li>
+        <li>{t('Photo.accordion.section2.content15')}</li>
+      </ul>
+      <h3 className='mt-2 text-lg font-semibold'>{t('Photo.accordion.section2.subTitle2')}</h3>
+      <ul className='list-inside list-disc'>
+        <li>{t('Photo.accordion.section2.content21')}</li>
+        <li>{t('Photo.accordion.section2.content22')}</li>
+        <li>
+          {t('Photo.accordion.section2.content23')}
+          <ul className='list-inside list-[circle] pl-6'>
+            <li>{t('Photo.accordion.section2.criteria1')}</li>
+            <li>{t('Photo.accordion.section2.criteria2')}</li>
+            <li>{t('Photo.accordion.section2.criteria3')}</li>
+            <li>{t('Photo.accordion.section2.criteria4')}</li>
+            <li>{t('Photo.accordion.section2.criteria5')}</li>
+          </ul>
+        </li>
+      </ul>
+      <h3 className='mt-2 text-lg font-semibold'>{t('Photo.accordion.section2.subTitle3')}</h3>
+      <ul className='list-inside list-disc'>
+        <li>
+          {t('Photo.accordion.section2.content31')} <b>{t('Photo.accordion.section2.content32')}</b>
+        </li>
+        <li>
+          {t('Photo.accordion.section2.content33')} <b>{t('Photo.accordion.section2.content34')}</b>
+          {t('Photo.accordion.section2.content35')}
+        </li>
+        <li>
+          {t('Photo.accordion.section2.content36')} <b>{t('Photo.accordion.section2.content37')}</b>
+          {t('Photo.accordion.section2.content38')}
+        </li>
+      </ul>
+      <h3 className='mt-2 text-lg font-semibold'>{t('Photo.accordion.section2.subTitle4')}</h3>
+      <ul className='list-inside list-disc'>
+        <li>
+          <b>{t('Photo.accordion.section2.content41')}</b>
+          {t('Photo.accordion.section2.content42')}
+        </li>
+        <li>
+          <b>{t('Photo.accordion.section2.content43')}</b>
+          {t('Photo.accordion.section2.content44')}
+          <b>{t('Photo.accordion.section2.content45')}</b>
+          {t('Photo.accordion.section2.content46')}
+        </li>
+        <li>
+          {t('Photo.accordion.section2.content47')}
+          <b>{t('Photo.accordion.section2.content48')}</b>
+          {t('Photo.accordion.section2.content49')}
+        </li>
+      </ul>
+    </div>
+  )
+}
+
+const Accordion3Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <div>
+      <ul className='list-inside list-disc'>
+        <li>
+          <b>{t('Photo.accordion.section3.content1')}</b>
+          {t('Photo.accordion.section3.content2')}
+          <b>{t('Photo.accordion.section3.content3')}</b>
+          {t('Photo.accordion.section3.content4')}
+          <b>{t('Photo.accordion.section3.content5')}</b>
+        </li>
+        <li>
+          <b>{t('Photo.accordion.section3.content7')}</b>
+          {t('Photo.accordion.section3.content8')}
+        </li>
+        <li>
+          <b>{t('Photo.accordion.section3.content9')}</b>
+          <ul className='list-inside list-disc pl-6'>
+            <li>{t('Photo.accordion.section3.criteria1')}</li>
+            <li>{t('Photo.accordion.section3.criteria2')}</li>
+            <li>
+              {t('Photo.accordion.section3.criteria3')}
+              <b>{t('Photo.accordion.section3.criteria4')}</b>
+              {t('Photo.accordion.section3.criteria5')}
+            </li>
+            <li>{t('Photo.accordion.section3.criteria6')}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  )
+}
+
+const Accordion4Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <ul className='list-inside list-disc'>
+      <li>{t('Photo.accordion.section4.content1')}</li>
+      <li>{t('Photo.accordion.section4.content2')}</li>
+      <li>{t('Photo.accordion.section4.content3')}</li>
+      <li>{t('Photo.accordion.section4.content4')}</li>
+      <li>{t('Photo.accordion.section4.content5')}</li>
+      <li>{t('Photo.accordion.section4.content6')}</li>
+      <li>
+        {t('Photo.accordion.section4.content7')}
+        <b>{t('Photo.accordion.section4.content8')}</b>
+        {t('Photo.accordion.section4.content9')}
+      </li>
+      <li>
+        {t('Photo.accordion.section4.content10')}
+        <b>{t('Photo.accordion.section4.content11')}</b>
+        {t('Photo.accordion.section4.content12')}
+      </li>
+      <li>{t('Photo.accordion.section4.content13')}</li>
+      <li>{t('Photo.accordion.section4.content14')}</li>
+    </ul>
+  )
+}
+
+const Accordion5Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <ul className='list-inside list-disc'>
+      <li>
+        <b>{t('Photo.accordion.section5.content1')}</b>
+        <span>{t('Photo.accordion.section5.content2')}</span>
+      </li>
+      <li>
+        <b>{t('Photo.accordion.section5.content3')}</b>
+        <span>{t('Photo.accordion.section5.content4')}</span>
+      </li>
+      <li>
+        <b>{t('Photo.accordion.section5.content5')}</b>
+        <span>{t('Photo.accordion.section5.content6')}</span>
+      </li>
+      <li>
+        <b>{t('Photo.accordion.section5.content7')}</b>
+        <span>{t('Photo.accordion.section5.content8')}</span>
+      </li>
+    </ul>
+  )
+}
+
+const Accordion7Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <ul className='list-inside list-disc'>
+      <li>
+        <strong>{t('Photo.accordion.section7.content1')}</strong> {t('Photo.accordion.section7.content2')}
+      </li>
+      <li>
+        <strong>{t('Photo.accordion.section7.content3')}</strong> {t('Photo.accordion.section7.content4')}
+        <ul className='list-inside list-[circle] pl-6'>
+          <li>
+            <strong>{t('Photo.accordion.section7.criteria1.title')}</strong> {t('Photo.accordion.section7.criteria1.description')}
+          </li>
+          <li>
+            <strong>{t('Photo.accordion.section7.criteria2.title')}</strong> {t('Photo.accordion.section7.criteria2.description')}
+          </li>
+          <li>
+            <strong>{t('Photo.accordion.section7.criteria3.title')}</strong> {t('Photo.accordion.section7.criteria3.description')}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  )
+}
+
+const Accordion8Content = () => {
+  const { t } = useTranslation()
+
+  return (
+    <div>
+      <p>{t('Photo.accordion.section8.content1')}</p>
+      <p className='mt-2'>{t('Photo.accordion.section8.content2')}</p>
+      <ul className='list-inside list-disc pl-3'>
+        <li>{t('Photo.accordion.section8.case1')}</li>
+        <li>{t('Photo.accordion.section8.case2')}</li>
+        <li>{t('Photo.accordion.section8.case3')}</li>
+      </ul>
     </div>
   )
 }

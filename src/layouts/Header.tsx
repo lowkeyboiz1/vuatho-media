@@ -22,7 +22,7 @@ const Header = () => {
 
   const t = translate('Header')
 
-  console.log({ t, title: t.title })
+  // console.log({ t, title: t.title })
 
   const toggleLanguage = useCallback(() => {
     console.log({ language })
