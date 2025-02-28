@@ -4,6 +4,7 @@ import axios from 'axios'
 import { toast } from 'sonner'
 
 export const authHeader_Bearer = () => {
+  if (typeof window === 'undefined') return {}
   // const [_, setToken] = useAtom(tokenAtom)
   // let accessToken = localStorage.getItem('token')
   // get accessToken from url

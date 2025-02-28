@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 
 export const useLanguage = () => {
+  if (typeof window === 'undefined') return { locale: 'VN', toggleLocale: () => {} }
   const [locale, setLocale] = useState<'VN' | 'EN'>('VN')
 
   useEffect(() => {

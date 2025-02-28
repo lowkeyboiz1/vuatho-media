@@ -13,16 +13,19 @@ export const translate = (key: string) => {
   const { t } = useContext(TranslationContext)
   return t(key)
 }
+
 // Context Provider component
 export const TranslationProvider = ({ children }: { children: React.ReactNode }) => {
-  //convert lang to locale
   const [language, setLanguage] = useState('vi')
   const [trans, setTranslations] = useState<any>(vi)
 
   useEffect(() => {
-    const lang = localStorage.getItem('lang') || 'vi'
-    setLanguage(lang)
+    if (typeof window !== 'undefined') {
+      const lang = localStorage.getItem('lang') || 'vi'
+      setLanguage(lang)
+    }
   }, [])
+
   useEffect(() => {
     const loadTranslations = async () => {
       try {
@@ -41,9 +44,9 @@ export const TranslationProvider = ({ children }: { children: React.ReactNode })
     const keys = key?.split('.')
     let result = trans
     for (const k of keys) {
-      result = result[k]
+      result = result?.[k]
       if (!result) {
-        return null // Trả về null nếu không tìm thấy key
+        return key // Fallback to the key if not found
       }
     }
     return result
@@ -52,7 +55,9 @@ export const TranslationProvider = ({ children }: { children: React.ReactNode })
   // Function to change language
   const changeLanguage = (newLanguage: string) => {
     setLanguage(newLanguage)
-    localStorage.setItem('lang', newLanguage)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lang', newLanguage)
+    }
   }
 
   return <TranslationContext.Provider value={{ language, changeLanguage, t: getMessages }}>{children}</TranslationContext.Provider>
